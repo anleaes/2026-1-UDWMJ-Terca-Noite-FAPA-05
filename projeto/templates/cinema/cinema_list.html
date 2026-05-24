@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}
+    Cinema List - {{ block.super }}
+{% endblock title %}
+{% block body %}
+<br />
+    <a href="{% url 'cinema:add_cinema' %}">Register Cinema</a>
+<br />
+<br />
+<b>Cinema List</b></h5>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Phone</th>
+        <th>CNPJ</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for cinema in cinemas %}
+        <tr>
+            <td>{{ cinema.id }}</td>
+            <td>{{ cinema.name }}</td>
+            <td>{{ cinema.address }}</td>
+            <td>{{ cinema.phone }}</td>
+            <td>{{ cinema.cnpj }}</td>
+            <td>
+                <a href="{% url 'cinema:edit_cinema' cinema.id %}">Edit</a>
+            </td>
+            <td>
+                <a href="{% url 'cinema:delete_cinema' cinema.id %}">Delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock body %}
