@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
-from django.shortcuts import render
+from .forms import ClientForm
 from .models import Client
 
 # Create your views here.
