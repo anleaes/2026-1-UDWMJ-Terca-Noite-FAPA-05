@@ -30,7 +30,7 @@ def cinema_list(request):
     return render(request, template_name, context)
 
 def edit_cinema(request, pk):
-    template_name = 'cinemas/edit_cinema.html'
+    template_name = 'cinema/edit_cinema.html'
 
     cinema = get_object_or_404(Cinema, pk=pk)
 
