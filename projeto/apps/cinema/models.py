@@ -8,8 +8,8 @@ class Cinema(models.Model):
     cnpj = models.CharField(max_length=20)
 
     class Meta:
-        db_table = 'cinemas'
-        ordering = ['name']
+        db_table = 'cinema'
+        ordering = ['id']
 
 
     def __str__(self):
