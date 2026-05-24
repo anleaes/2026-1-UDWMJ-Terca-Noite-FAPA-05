@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}
+    Register Cinema - {{ block.super }}
+{% endblock title %}
+{% block body %}
+<br />
+<b>Register Cinema</b>
+<br />
+<br />
+<form action="" method="POST">
+{% csrf_token %}
+    <label>Name</label>
+    <br />
+    {{ form.name }}
+    <br />
+    <br />
+    <label>Address</label>
+    <br />
+    {{ form.address }}
+    <br />
+    <br />
+    <label>Phone</label>
+    <br />
+    {{ form.phone }}
+    <br />
+    <br />
+    <label>CNPJ</label>
+    <br />
+    {{ form.cnpj }}
+    <br />
+    <br />
+    <button type="submit">Save</button>
+</form>
+{% endblock body %}
