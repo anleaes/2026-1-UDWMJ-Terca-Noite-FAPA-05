@@ -5,7 +5,7 @@ class Room(models.Model):
     capacity = models.IntegerField()
     projection_type = models.CharField(max_length=10)
     accessibility = models.BooleanField(default=False)
-    cinema = models.ForeignKey('cinema.Cinema', on_delete=models.CASCADE)
+    cinema = models.ForeignKey('cinema.Cinema', on_delete=models.CASCADE, related_name='rooms')
 
     class Meta:
         db_table = 'room'
