@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}
+    Register Client - {{ block.super }}
+{% endblock title %}
+{% block body %}
+<br />
+<b>Register Client</b>
+<br />
+<br />
+<form action="" method="POST">
+{% csrf_token %}
+    <label>Name</label>
+    <br />
+    {{ form.first_name }}
+    <br />
+    <label>Last Name</label>
+    <br />
+    {{ form.last_name }}
+    <br />
+    <label>Address</label>
+    <br />
+    {{ form.address }}
+    <br />
+    <br />
+    <label>Phone</label>
+    <br />
+    {{ form.phone }}
+    <br />
+    <br />
+    <label>Email</label>
+    <br />
+    {{ form.email }}
+    <br />
+    <label>Gender</label>
+    <br />
+    {{ form.gender }}
+    <br />
+    <label>CPF</label>
+    <br />
+    {{ form.cpf }}
+    <br />
+    <label>Date of Birth</label>
+    <br />
+    {{ form.date_of_birth }}
+    <br />
+    <br />
+    <button type="submit">Save</button>
+</form>
+{% endblock body %}
