@@ -1,4 +1,4 @@
-from django.shortcuts import render, get object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect
 
 from .forms import CinemaForm
 from .models import Cinema
@@ -12,12 +12,11 @@ def add_cinema(request):
         form = CinemaForm(request.POST)
 
         if form.is_valid():
-            f = form.save(commit=False)
-            f.save()
-
+            form.save()
             return redirect('cinema:cinema_list')
-    
-    form = CinemaForm()
+    else:
+        form = CinemaForm()
+
     context['form'] = form
     return render(request, template_name, context)
 
@@ -30,10 +29,10 @@ def cinema_list(request):
 
     return render(request, template_name, context)
 
-def edit_cinema(request, id_cinema):
+def edit_cinema(request, pk):
     template_name = 'cinema/add_cinema.html'
     context = {}
-    cinema = get_object_or_404(Cinema, pk=id_cinema)
+    cinema = get_object_or_404(Cinema, pk=pk)
 
     if request.method == 'POST':
         form = CinemaForm(request.POST, instance=cinema)
@@ -41,12 +40,13 @@ def edit_cinema(request, id_cinema):
         if form.is_valid():
             form.save()
             return redirect('cinema:cinema_list')
-    
-    form = CinemaForm(instance=cinema)
+    else:
+        form = CinemaForm(instance=cinema)
+
     context['form'] = form
     return render(request, template_name, context)
 
-def delete_cinema(request, id_cinema):
-    cinema = Cinema.objects.get(pk=id_cinema)
+def delete_cinema(request, pk):
+    cinema = Cinema.objects.get(pk=pk)
     cinema.delete()
     return redirect('cinema:cinema_list')
