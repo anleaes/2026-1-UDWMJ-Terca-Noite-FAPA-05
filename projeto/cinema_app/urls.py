@@ -24,5 +24,6 @@ urlpatterns = [
     path('cinema/', include('cinema.urls', namespace='cinema')),
     path('client/', include('client.urls', namespace='client')),
     path('room/', include('room.urls', namespace='room')),
+    path('employee/', include('employee.urls', namespace='employee')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

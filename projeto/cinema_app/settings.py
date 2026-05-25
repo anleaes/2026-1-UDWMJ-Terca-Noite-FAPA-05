@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'client.apps.ClientConfig',
     'person.apps.PersonConfig',
     'room.apps.RoomConfig',
+    'employee.apps.EmployeeConfig',
 ]
 
 MIDDLEWARE = [
