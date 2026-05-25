@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core.apps.CoreConfig',
     'cinema.apps.CinemaConfig',
+    'client.apps.ClientConfig',
+    'person.apps.PersonConfig',
+    'room.apps.RoomConfig',
 ]
 
 MIDDLEWARE = [
