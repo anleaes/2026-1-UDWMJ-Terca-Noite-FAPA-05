@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}
+    Genre List - {{ block.super }}
+{% endblock title %}
+{% block body %}
+<br />
+    <a href="{% url 'genre:add_genre' %}">Register Genre</a>
+<br />
+<br />
+<b>Genre List</b></h5>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Code</th>
+        <th>Active</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for genre in genres %}
+        <tr>
+            <td>{{ genre.id }}</td>
+            <td>{{ genre.name }}</td>
+            <td>{{ genre.description }}</td>
+            <td>{{ genre.code }}</td>
+            <td>{{ genre.active }}</td>
+            <td>
+                <a href="{% url 'genre:edit_genre' genre.id %}">Edit</a>
+            </td>
+            <td>
+                <a href="{% url 'genre:delete_genre' genre.id %}">Delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock body %}
