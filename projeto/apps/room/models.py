@@ -2,7 +2,8 @@ from django.db import models
 
 # Create your models here.
 class Room(models.Model):
-    capacity = models.IntegerField()
+    rows = models.IntegerField()
+    columns = models.IntegerField()
     projection_type = models.CharField(max_length=10)
     accessibility = models.BooleanField(default=False)
     cinema = models.ForeignKey('cinema.Cinema', on_delete=models.CASCADE, related_name='rooms')
