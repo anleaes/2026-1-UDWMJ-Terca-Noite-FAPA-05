@@ -30,20 +30,32 @@ def cinema_list(request):
     return render(request, template_name, context)
 
 def edit_cinema(request, pk):
-    template_name = 'cinema/add_cinema.html'
-    context = {}
+    template_name = 'cinema/edit_cinema.html'
+
     cinema = get_object_or_404(Cinema, pk=pk)
 
     if request.method == 'POST':
-        form = CinemaForm(request.POST, instance=cinema)
+        form = CinemaForm(
+            request.POST,
+            instance=cinema
+        )
 
         if form.is_valid():
             form.save()
+
             return redirect('cinema:cinema_list')
+
     else:
         form = CinemaForm(instance=cinema)
 
-    context['form'] = form
+    rooms = cinema.rooms.all()
+
+    context = {
+        'cinema_form': form,
+        'cinema': cinema,
+        'rooms': rooms
+    }
+
     return render(request, template_name, context)
 
 def delete_cinema(request, pk):
