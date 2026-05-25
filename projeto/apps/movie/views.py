@@ -32,11 +32,11 @@ def movie_list(request):
 
     return render(request, template_name, context)
 
-def edit_movie(request, movie_id):
+def edit_movie(request, pk):
     template_name = 'movie/add_movie.html'
     context = {}
 
-    movie = get_object_or_404(Movie, pk=movie_id)
+    movie = get_object_or_404(Movie, pk=pk)
 
     if request.method == 'POST':
         form = MovieForm(
