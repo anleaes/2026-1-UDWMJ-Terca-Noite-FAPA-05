@@ -23,5 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('cinema/', include('cinema.urls', namespace='cinema')),
     path('client/', include('client.urls', namespace='client')),
+    path('room/', include('room.urls', namespace='room')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
