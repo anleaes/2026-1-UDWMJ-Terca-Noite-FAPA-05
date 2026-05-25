@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}
+    Register Genre - {{ block.super }}
+{% endblock title %}
+{% block body %}
+<br />
+<b>Register Genre</b>
+<br />
+<br />
+<form action="" method="POST">
+{% csrf_token %}
+    <label>Name</label>
+    <br />
+    {{ form.name }}
+    <br />
+    <br />
+    <label>Description</label>
+    <br />
+    {{ form.description }}
+    <br />
+    <br />
+    <label>Code</label>
+    <br />
+    {{ form.code }}
+    <br />
+    <br />
+    <label>Active</label>
+    <br />
+    {{ form.active }}
+    <br />
+    <br />
+    <button type="submit">Save</button>
+</form>
+{% endblock body %}
