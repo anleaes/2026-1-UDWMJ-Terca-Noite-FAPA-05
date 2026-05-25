@@ -6,10 +6,7 @@ from cinema.models import Cinema
 # Create your views here.
 def add_room(request, cinema_id):
     template_name = 'room/add_room.html'
-    cinema = get_object_or_404(
-        Cinema,
-        id=cinema_id
-    )
+    cinema = get_object_or_404(Cinema, id=cinema_id)
 
     if request.method == 'POST':
         form = RoomForm(request.POST)
@@ -18,7 +15,8 @@ def add_room(request, cinema_id):
             room = form.save(commit=False)
             room.cinema = cinema
             room.save()
-            return redirect('cinema:edit_cinema', cinema.id)
+
+            return redirect('cinema:edit_cinema', cinema_id=cinema.id)
     else:
         form = RoomForm()
 
@@ -27,23 +25,20 @@ def add_room(request, cinema_id):
         'cinema': cinema
     }
 
-    return render(
-        request,
-        template_name,
-        context
-    )
+    return render(request, template_name, context)
+
 
 def edit_room(request, cinema_id, pk):
     template_name = 'room/add_room.html'
-    context = {}
+
     room = get_object_or_404(Room, id=pk, cinema_id=cinema_id)
 
     if request.method == 'POST':
         form = RoomForm(request.POST, instance=room)
 
         if form.is_valid():
-            form.save()
-            return redirect('cinema:edit_cinema', room.cinema.id)
+            room = form.save()
+            return redirect('cinema:edit_cinema', cinema_id=room.cinema_id)
     else:
         form = RoomForm(instance=room)
 
@@ -52,20 +47,25 @@ def edit_room(request, cinema_id, pk):
         'cinema': room.cinema,
         'room': room
     }
+
     return render(request, template_name, context)
+
 
 def delete_room(request, cinema_id, pk):
     room = get_object_or_404(Room, id=pk, cinema_id=cinema_id)
     room.delete()
-    return redirect('cinema:edit_cinema', cinema_id)
-  
+    return redirect('cinema:edit_cinema', cinema_id=cinema_id)
+
+
 def room_list(request, cinema_id):
     template_name = 'room/room_list.html'
-    rooms = Room.objects.filter(cinema_id=cinema_id)
+
+    cinema = get_object_or_404(Cinema, id=cinema_id)
+    rooms = Room.objects.filter(cinema_id=cinema.id)
+
     context = {
+        'cinema': cinema,
         'rooms': rooms
     }
 
     return render(request, template_name, context)
-
-
