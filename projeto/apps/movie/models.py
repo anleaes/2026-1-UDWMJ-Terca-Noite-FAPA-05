@@ -6,14 +6,14 @@ class Movie(models.Model):
     title = models.CharField(max_length=100)
     synopsis = models.TextField()
     duration_minutes = models.IntegerField()
-    age_rating = models.IntegerField(max_length=3)
+    age_rating = models.IntegerField()
     poster = models.ImageField(
         upload_to='movie_posters/', 
         null=True, 
         blank=True
     )
     genres = models.ManyToManyField(   
-        'Genre', 
+        Genre, 
         related_name='movies'
     )
 

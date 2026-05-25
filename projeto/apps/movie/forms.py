@@ -5,3 +5,6 @@ class MovieForm(forms.ModelForm):
     class Meta:
         model = Movie
         fields = '__all__'
+        widgets = {
+            'genres': forms.CheckboxSelectMultiple(),
+        }
