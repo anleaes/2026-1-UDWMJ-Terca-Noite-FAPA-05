@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Edit Cinema - {{ block.super }}
+{% endblock title %}
+
+{% block body %}
+
+<h1>Edit Cinema</h1>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <label>Name</label>
+    <br />
+    {{ cinema_form.name }}
+    <br />
+    <br />
+
+    <label>Address</label>
+    <br />
+    {{ cinema_form.address }}
+    <br />
+    <br />
+
+    <label>Phone</label>
+    <br />
+    {{ cinema_form.phone }}
+    <br />
+    <br />
+
+    <label>CNPJ</label>
+    <br />
+    {{ cinema_form.cnpj }}
+    <br />
+    <br />
+
+    <button type="submit">
+        Save Cinema
+    </button>
+</form>
+
+<hr />
+
+<h2>Room List</h2>
+
+<br />
+
+<a href="{% url 'room:add_room' cinema.id %}">
+    Register Room
+</a>
+
+<br />
+<br />
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Capacity</th>
+            <th>Projection Type</th>
+            <th>Accessibility</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+    {% for room in rooms %}
+        <tr>
+            <td>{{ room.id }}</td>
+            <td>{{ room.capacity }}</td>
+            <td>{{ room.projection_type }}</td>
+
+            <td>
+                {% if room.accessibility %}
+                    Yes
+                {% else %}
+                    No
+                {% endif %}
+            </td>
+
+            <td>
+                <a href="{% url 'room:edit_room' cinema.id room.id %}">
+                    Edit
+                </a>
+            </td>
+
+            <td>
+                <a href="{% url 'room:delete_room' cinema.id room.id %}">
+                    Delete
+                </a>
+            </td>
+        </tr>
+
+    {% empty %}
+        <tr>
+            <td colspan="6">
+                No rooms registered.
+            </td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+
+<br />
+
+<a href="{% url 'cinema:cinema_list' %}">
+    Back to Cinema List
+</a>
+
+{% endblock body %}
