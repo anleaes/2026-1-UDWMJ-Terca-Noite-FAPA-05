@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}
+    Movie List - {{ block.super }}
+{% endblock title %}
+{% block body %}
+<br />
+    <a href="{% url 'movie:add_movie' %}">Register Movie</a>
+<br />
+<br />
+<b>Movie List</b></h5>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Synopsis</th>
+        <th>Duration Minutes</th>
+        <th>Age Rating</th>
+        <th>Poster</th>
+        <th>Genre</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for movie in movies %}
+        <tr>
+            <td>{{ movie.id }}</td>
+            <td>{{ movie.title }}</td>
+            <td>{{ movie.synopsis }}</td>
+            <td>{{ movie.duration_minutes }}</td>
+            <td>{{ movie.age_rating }}</td>
+            <td><img src="{{ movie.poster.url }}" alt="{{ movie.title }}" width="100"></td>
+            <td>{{ movie.genre }}</td>
+            <td>
+                <a href="{% url 'movie:edit_movie' movie.id %}">Edit</a>
+            </td>
+            <td>
+                <a href="{% url 'movie:delete_movie' movie.id %}">Delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock body %}
