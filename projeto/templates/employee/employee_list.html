@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}
+    Employee List - {{ block.super }}
+{% endblock title %}
+{% block body %}
+<br />
+    <a href="{% url 'employee:add_employee' %}">Register Employee</a>
+<br />
+<br />
+<b>Employee List</b></h5>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Address</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Salary</th>
+        <th>Position</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for employee in employees %}
+        <tr>
+            <td>{{ employee.id }}</td>
+            <td>{{ employee.first_name }}</td>
+            <td>{{ employee.last_name }}</td>
+            <td>{{ employee.address }}</td>
+            <td>{{ employee.phone }}</td>
+            <td>{{ employee.email }}</td>
+            <td>{{ employee.salary }}</td>
+            <td>{{ employee.position }}</td>
+            <td>
+                <a href="{% url 'employee:edit_employee' employee.id %}">Edit</a>
+            </td>
+            <td>
+                <a href="{% url 'employee:delete_employee' employee.id %}">Delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock body %}

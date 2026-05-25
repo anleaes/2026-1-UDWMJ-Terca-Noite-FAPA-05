@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}
+    Register Employee - {{ block.super }}
+{% endblock title %}
+{% block body %}
+<br />
+<b>Register Employee</b>
+<br />
+<br />
+<form action="" method="POST">
+{% csrf_token %}
+    <label>Name</label>
+    <br />
+    {{ form.first_name }}
+    <br />
+    <label>Last Name</label>
+    <br />
+    {{ form.last_name }}
+    <br />
+    <label>Address</label>
+    <br />
+    {{ form.address }}
+    <br />
+    <br />
+    <label>Phone</label>
+    <br />
+    {{ form.phone }}
+    <br />
+    <br />
+    <label>Email</label>
+    <br />
+    {{ form.email }}
+    <br />
+    <label>Salary</label>
+    <br />
+    {{ form.salary }}
+    <br />
+    <label>Position</label>
+    <br />
+    {{ form.position }}
+    <br />
+    <br />
+    <button type="submit">Save</button>
+</form>
+{% endblock body %}
