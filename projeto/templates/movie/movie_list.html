@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}
     Movie List - {{ block.super }}
 {% endblock title %}
@@ -30,8 +31,20 @@
             <td>{{ movie.synopsis }}</td>
             <td>{{ movie.duration_minutes }}</td>
             <td>{{ movie.age_rating }}</td>
-            <td><img src="{{ movie.poster.url }}" alt="{{ movie.title }}" width="100"></td>
-            <td>{{ movie.genre }}</td>
+            <td>
+                {% if movie.poster %}
+                    <img src="{{ movie.poster.url }}" alt="{{ movie.title }}" width="100">
+                {% else %}
+                    <img src="{% static 'img/default.png' %}" alt="No poster" width="100">
+                {% endif %}
+            </td>
+            <td>
+                {% for genre in movie.genres.all %}
+                    {{ genre.name }}{% if not forloop.last %}, {% endif %}
+                {% empty %}
+                    No genres
+                {% endfor %}
+            </td>
             <td>
                 <a href="{% url 'movie:edit_movie' movie.id %}">Edit</a>
             </td>

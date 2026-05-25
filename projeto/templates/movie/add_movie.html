@@ -7,7 +7,7 @@
 <b>Register Movie</b>
 <br />
 <br />
-<form action="" method="POST">
+<form action="" method="POST" enctype="multipart/form-data">
 {% csrf_token %}
     <label>Title</label>
     <br />
@@ -33,7 +33,7 @@
     <br />
     <label>Genre</label>
     <br />
-    {{ form.genre }}
+    {{ form.genres }}
     <br />
     <br />
     <button type="submit">Save</button>
