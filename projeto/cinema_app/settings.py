@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'room.apps.RoomConfig',
     'employee.apps.EmployeeConfig',
     'seat.apps.SeatConfig',
+    'screening.apps.ScreeningConfig',
 ]
 
 MIDDLEWARE = [
