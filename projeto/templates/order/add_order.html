@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}
+    Register Order - {{ block.super }}
+{% endblock title %}
+{% block body %}
+<br />
+<b>Register Order</b>
+<br />
+<br />
+<form action="" method="POST">
+{% csrf_token %}
+    <label>Date Created</label>
+    <br />
+    {{ form.date_created }}
+    <br />
+    <label>Status</label>
+    <br />
+    {{ form.status }}
+    <br />
+    <label>Total Price</label>
+    <br />
+    {{ form.total_price }}
+    <br />
+    <br />
+    <label>Client</label>
+    <br />
+    {{ form.client }}
+    <br />
+    <br />
+    <label>Employee</label>
+    <br />
+    {{ form.employee }}
+    <br />
+    <br />
+    <button type="submit">Save</button>
+</form>
+{% endblock body %}
