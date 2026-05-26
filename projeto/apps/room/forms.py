@@ -4,4 +4,4 @@ from .models import Room
 class RoomForm(forms.ModelForm):
     class Meta:
         model = Room
-        fields = ['capacity', 'projection_type', 'accessibility']
+        fields = ['rows', 'columns', 'projection_type', 'accessibility']
