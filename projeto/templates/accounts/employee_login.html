@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 
-{% block title %}Client Login - {{ block.super }}{% endblock title %}
+{% block title %}Employee Login - {{ block.super }}{% endblock title %}
 
 {% block body %}
 <main class="home">
-    <h1>Client Login</h1>
+    <h1>Employee Login</h1>
+    <p>Staff accounts are created in Django Admin (Employee + login).</p>
 
     {% if messages %}
     <ul>
@@ -29,8 +30,6 @@
         <button type="submit" class="btn">Sign in</button>
     </form>
     <br />
-    <a href="{% url 'accounts:add_user' %}">Create client account</a>
-    <br />
-    <a href="{% url 'accounts:employee_login' %}">Employee login</a>
+    <a href="{% url 'accounts:user_login' %}">Client login</a>
 </main>
 {% endblock body %}
