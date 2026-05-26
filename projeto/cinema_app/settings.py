@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'employee.apps.EmployeeConfig',
     'genre.apps.GenreConfig',
     'order.apps.OrderConfig',
+    'payment.apps.PaymentConfig',
 ]
 
 MIDDLEWARE = [
