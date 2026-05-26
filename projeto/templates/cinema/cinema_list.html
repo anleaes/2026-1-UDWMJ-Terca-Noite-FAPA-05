@@ -4,9 +4,11 @@
 {% endblock title %}
 {% block body %}
 <br />
+{% if user_is_employee %}
     <a href="{% url 'cinema:add_cinema' %}">Register Cinema</a>
 <br />
 <br />
+{% endif %}
 <b>Cinema List</b></h5>
 <table border="1">
     <thead>
@@ -16,8 +18,10 @@
         <th>Address</th>
         <th>Phone</th>
         <th>CNPJ</th>
+        {% if user_is_employee %}
         <th></th>
         <th></th>
+        {% endif %}
     </tr>
     </thead>
     <tbody>
@@ -28,12 +32,14 @@
             <td>{{ cinema.address }}</td>
             <td>{{ cinema.phone }}</td>
             <td>{{ cinema.cnpj }}</td>
+            {% if user_is_employee %}
             <td>
                 <a href="{% url 'cinema:edit_cinema' cinema.id %}">Edit</a>
             </td>
             <td>
                 <a href="{% url 'cinema:delete_cinema' cinema.id %}">Delete</a>
             </td>
+            {% endif %}
         </tr>
     {% endfor %}
     </tbody>

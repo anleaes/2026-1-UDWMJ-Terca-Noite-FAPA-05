@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, redirect
 
 from django.contrib.auth.models import User
@@ -59,7 +60,10 @@ def user_login(request):
             if next_url:
                 return redirect(next_url)
             if hasattr(user, 'client_profile'):
-                return redirect('/cinema/')
+                return redirect('core:home')
+            if user.is_staff or user.is_superuser:
+                return redirect('cinema:cinema_list')
+            return redirect('core:home')
         else:
             return redirect('accounts:user_login')
     return render(request, template_name, {})
@@ -88,9 +92,11 @@ def user_change_password(request):
 
 @login_required(login_url=LOGIN_URL)
 def user_change_information(request, username):
+    if request.user.username != username:
+        raise PermissionDenied
     template_name = 'accounts/user_change_information.html'
     context = {}
-    user = User.objects.get(username=username)
+    user = request.user
     if request.method == 'POST':
         form = UserChangeInformationForm(request.POST, instance=user)
         if form.is_valid():

@@ -1,8 +1,13 @@
-from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, get_object_or_404
 
 from .forms import PaymentForm
 from .models import Payment
-# Create your views here.
+
+LOGIN_URL = '/accounts/user_login/'
+
+
+@login_required(login_url=LOGIN_URL)
 def add_payment(request):
     template_name = 'payment/add_payment.html'
     context = {}
@@ -18,6 +23,8 @@ def add_payment(request):
     context['form'] = form
     return render(request, template_name, context)
 
+
+@login_required(login_url=LOGIN_URL)
 def payment_list(request):
     template_name = 'payment/payment_list.html'
     payments = Payment.objects.all()
@@ -26,6 +33,8 @@ def payment_list(request):
     }
     return render(request, template_name, context)
 
+
+@login_required(login_url=LOGIN_URL)
 def edit_payment(request, pk):
     template_name = 'payment/edit_payment.html'
     payment = get_object_or_404(Payment, pk=pk)
@@ -34,6 +43,8 @@ def edit_payment(request, pk):
     }
     return render(request, template_name, context)
 
+
+@login_required(login_url=LOGIN_URL)
 def delete_payment(request, pk):
     payment = get_object_or_404(Payment, pk=pk)
     payment.delete()

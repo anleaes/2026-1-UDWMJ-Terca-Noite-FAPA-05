@@ -1,11 +1,11 @@
-from urllib import request
-
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Movie 
+
+from accounts.decorators import employee_required
+from .models import Movie
 from .forms import MovieForm
 
-# Create your views here.
 
+@employee_required
 def add_movie(request):
     template_name = 'movie/add_movie.html'
     context = {}
@@ -23,6 +23,7 @@ def add_movie(request):
 
     return render(request, template_name, context)
 
+
 def movie_list(request):
     template_name = 'movie/movie_list.html'
     context = {}
@@ -32,6 +33,8 @@ def movie_list(request):
 
     return render(request, template_name, context)
 
+
+@employee_required
 def edit_movie(request, pk):
     template_name = 'movie/add_movie.html'
     context = {}
@@ -56,6 +59,7 @@ def edit_movie(request, pk):
     return render(request, template_name, context)
 
 
+@employee_required
 def delete_movie(request, movie_id):
     movie = get_object_or_404(Movie, pk=movie_id)
 
