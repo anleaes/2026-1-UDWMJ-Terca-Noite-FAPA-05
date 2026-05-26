@@ -39,7 +39,7 @@ def edit_screening(request, pk):
         if form.is_valid():
             screening = form.save()
             return redirect('screening:screening_list')
-    else:
+    else:g
         form = ScreeningForm(instance=screening)
 
     context = {
@@ -49,7 +49,6 @@ def edit_screening(request, pk):
     return render(request, template_name, context)
 
 def delete_screening(request, pk):
-    template_name = 'screening/screening_list.html'
-    context = {}
-
-    return render(request, template_name, context)
+    screening = Screening.objects.get(pk=pk)
+    screening.delete()
+    return redirect('screening:screening_list')
