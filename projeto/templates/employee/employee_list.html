@@ -4,9 +4,11 @@
 {% endblock title %}
 {% block body %}
 <br />
-    <a href="{% url 'employee:add_employee' %}">Register Employee</a>
+{% if user_is_employee %}
+    <a href="{% url 'employee:add_employee' %}">Add Employee (Admin)</a>
 <br />
 <br />
+{% endif %}
 <b>Employee List</b></h5>
 <table border="1">
     <thead>

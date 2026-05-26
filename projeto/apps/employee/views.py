@@ -1,25 +1,18 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.admin.views.decorators import staff_member_required
+from django.shortcuts import redirect, render, get_object_or_404
+from django.urls import reverse
 
+from accounts.decorators import employee_required
 from .forms import EmployeeForm
 from .models import Employee
 
-# Create your views here.
+
+@staff_member_required
 def add_employee(request):
-    template_name = 'employee/add_employee.html'
-    context = {}
+    return redirect(reverse('admin:employee_employee_add'))
 
-    if request.method == 'POST':
-        form = EmployeeForm(request.POST)
 
-        if form.is_valid():
-            form.save()
-            return redirect('employee:employee_list')
-    else:
-        form = EmployeeForm()
-
-    context['form'] = form
-    return render(request, template_name, context)
-
+@employee_required
 def employee_list(request):
     template_name = 'employee/employee_list.html'
     employees = Employee.objects.all()
@@ -29,24 +22,12 @@ def employee_list(request):
 
     return render(request, template_name, context)
 
+
+@employee_required
 def edit_employee(request, pk):
-    template_name = 'employee/add_employee.html'
-    context = {}
-    employee = get_object_or_404(Employee, pk=pk)
+    return redirect(reverse('admin:employee_employee_change', args=[pk]))
 
-    if request.method == 'POST':
-        form = EmployeeForm(request.POST, instance=employee)
 
-        if form.is_valid():
-            form.save()
-            return redirect('employee:employee_list')
-    else:
-        form = EmployeeForm(instance=employee)
-
-    context['form'] = form
-    return render(request, template_name, context)
-
+@employee_required
 def delete_employee(request, pk):
-    employee = Employee.objects.get(pk=pk)
-    employee.delete()
-    return redirect('employee:employee_list')
+    return redirect(reverse('admin:employee_employee_delete', args=[pk]))
