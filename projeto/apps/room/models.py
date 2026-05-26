@@ -3,8 +3,8 @@ from seat.models import Seat
 
 # Create your models here.
 class Room(models.Model):
-    rows = models.IntegerField()
-    columns = models.IntegerField()
+    rows = models.IntegerField(default=1)
+    columns = models.IntegerField(default=1)
     projection_type = models.CharField(max_length=50)
     accessibility = models.BooleanField(default=False)
     cinema = models.ForeignKey('cinema.Cinema', on_delete=models.CASCADE, related_name='rooms')
