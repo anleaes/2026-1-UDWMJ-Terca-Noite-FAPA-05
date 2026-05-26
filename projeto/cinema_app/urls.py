@@ -25,6 +25,7 @@ urlpatterns = [
     path('client/', include('client.urls', namespace='client')),
     path('room/', include('room.urls', namespace='room')),
     path('employee/', include('employee.urls', namespace='employee')),
+    path('screening/', include('screening.urls', namespace='screening')),
     path('genre/', include('genre.urls', namespace='genre')),
     path('order/', include('order.urls', namespace='order')),
     path('payment/', include('payment.urls', namespace='payment')),
