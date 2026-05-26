@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
 
-{% block title %}
-    {{ block.super }}
-{% endblock title %}
+{% block title %}Home - {{ block.super }}{% endblock title %}
 
 {% block body %}
+<main class="home">
+    <h1>Cinema App</h1>
 
-<!-- Código HTML específico desse arquivo -->
-
+    {% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }}.</p>
+    {% else %}
+    <p>Sign in or create an account to manage orders and your profile.</p>
+    {% endif %}
+</main>
 {% endblock body %}

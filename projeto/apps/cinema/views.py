@@ -1,9 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
+from accounts.decorators import employee_required
 from .forms import CinemaForm
 from .models import Cinema
 
-# Create your views here.
+
+@employee_required
 def add_cinema(request):
     template_name = 'cinema/add_cinema.html'
     context = {}
@@ -20,6 +22,7 @@ def add_cinema(request):
     context['form'] = form
     return render(request, template_name, context)
 
+
 def cinema_list(request):
     template_name = 'cinema/cinema_list.html'
     cinemas = Cinema.objects.filter()
@@ -29,6 +32,8 @@ def cinema_list(request):
 
     return render(request, template_name, context)
 
+
+@employee_required
 def edit_cinema(request, pk):
     template_name = 'cinema/edit_cinema.html'
 
@@ -58,6 +63,8 @@ def edit_cinema(request, pk):
 
     return render(request, template_name, context)
 
+
+@employee_required
 def delete_cinema(request, pk):
     cinema = Cinema.objects.get(pk=pk)
     cinema.delete()

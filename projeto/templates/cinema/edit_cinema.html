@@ -46,12 +46,14 @@
 
 <br />
 
+{% if user_is_employee %}
 <a href="{% url 'room:add_room' cinema.id %}">
     Register Room
 </a>
 
 <br />
 <br />
+{% endif %}
 
 <table border="1">
     <thead>
@@ -61,8 +63,10 @@
             <th>Columns</th>
             <th>Projection Type</th>
             <th>Accessibility</th>
+            {% if user_is_employee %}
             <th></th>
             <th></th>
+            {% endif %}
         </tr>
     </thead>
 
@@ -83,6 +87,7 @@
                 {% endif %}
             </td>
 
+            {% if user_is_employee %}
             <td>
                 <a href="{% url 'room:edit_room' cinema.id room.id %}">
                     Edit
@@ -94,6 +99,7 @@
                     Delete
                 </a>
             </td>
+            {% endif %}
         </tr>
 
     {% empty %}

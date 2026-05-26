@@ -4,9 +4,11 @@
 {% endblock title %}
 {% block body %}
 <br />
+{% if user_is_employee %}
     <a href="{% url 'screening:add_screening' %}">Register Screening</a>
 <br />
 <br />
+{% endif %}
 <b>Screening List</b></h5>
 <table border="1">
     <thead>
@@ -17,8 +19,10 @@
         <th>Start Time</th>
         <th>Price</th>
         <th>Dubbed</th>
+        {% if user_is_employee %}
         <th></th>
         <th></th>
+        {% endif %}
     </tr>
     </thead>
     <tbody>
@@ -30,12 +34,14 @@
             <td>{{ screening.start_time }}</td>
             <td>{{ screening.price }}</td>
             <td>{{ screening.dubbed }}</td>
+            {% if user_is_employee %}
             <td>
                 <a href="{% url 'screening:edit_screening' screening.id %}">Edit</a>
             </td>
             <td>
                 <a href="{% url 'screening:delete_screening' screening.id %}">Delete</a>
             </td>
+            {% endif %}
         </tr>
     {% endfor %}
     </tbody>
