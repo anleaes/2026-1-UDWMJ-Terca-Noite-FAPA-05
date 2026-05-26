@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}
+    Register Screening - {{ block.super }}
+{% endblock title %}
+{% block body %}
+<br />
+<b>Register Screening</b>
+<br />
+<br />
+<form action="" method="POST">
+{% csrf_token %}
+    <label>Movie</label>
+    <br />
+    {{ form.movie }}
+    <br />
+    <label>Room</label>
+    <br />
+    {{ form.room }}
+    <br />
+    <label>Start Time</label>
+    <br />
+    {{ form.start_time }}
+    <br />
+    <br />
+    <label>Price</label>
+    <br />
+    {{ form.price }}
+    <br />
+    <br />
+    <label>Dubbed</label>
+    <br />
+    {{ form.dubbed }}
+    <br />
+    <br />
+    <button type="submit">Save</button>
+</form>
+{% endblock body %}

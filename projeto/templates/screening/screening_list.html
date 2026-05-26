@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}
+    Screening List - {{ block.super }}
+{% endblock title %}
+{% block body %}
+<br />
+    <a href="{% url 'screening:add_screening' %}">Register Screening</a>
+<br />
+<br />
+<b>Screening List</b></h5>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Movie</th>
+        <th>Room</th>
+        <th>Start Time</th>
+        <th>Price</th>
+        <th>Dubbed</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for screening in screenings %}
+        <tr>
+            <td>{{ screening.id }}</td>
+            <td>{{ screening.movie }}</td>
+            <td>{{ screening.room }}</td>
+            <td>{{ screening.start_time }}</td>
+            <td>{{ screening.price }}</td>
+            <td>{{ screening.dubbed }}</td>
+            <td>
+                <a href="{% url 'screening:edit_screening' screening.id %}">Edit</a>
+            </td>
+            <td>
+                <a href="{% url 'screening:delete_screening' screening.id %}">Delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock body %}
