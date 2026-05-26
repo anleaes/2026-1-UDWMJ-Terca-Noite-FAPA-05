@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'payment.apps.PaymentConfig',
     'seat.apps.SeatConfig',
     'screening.apps.ScreeningConfig',
+    'movie.apps.MovieConfig',	
 ]
 
 MIDDLEWARE = [

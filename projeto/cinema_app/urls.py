@@ -29,5 +29,6 @@ urlpatterns = [
     path('genre/', include('genre.urls', namespace='genre')),
     path('order/', include('order.urls', namespace='order')),
     path('payment/', include('payment.urls', namespace='payment')),
+    path('movie/', include('movie.urls', namespace='movie')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
