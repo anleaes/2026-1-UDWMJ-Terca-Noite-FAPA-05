@@ -6,7 +6,7 @@ from cinema.models import Cinema
 # Create your views here.
 def add_room(request, cinema_id):
     template_name = 'room/add_room.html'
-    cinema = get_object_or_404(Cinema, id=cinema_id)
+    cinema = get_object_or_404(Cinema, pk=cinema_id)
 
     if request.method == 'POST':
         form = RoomForm(request.POST)
@@ -16,7 +16,7 @@ def add_room(request, cinema_id):
             room.cinema = cinema
             room.save()
 
-            return redirect('cinema:edit_cinema', cinema_id=cinema.id)
+            return redirect('cinema:edit_cinema', pk=cinema.id)
     else:
         form = RoomForm()
 
@@ -31,14 +31,14 @@ def add_room(request, cinema_id):
 def edit_room(request, cinema_id, pk):
     template_name = 'room/add_room.html'
 
-    room = get_object_or_404(Room, id=pk, cinema_id=cinema_id)
+    room = get_object_or_404(Room, pk=pk, cinema_id=cinema_id)
 
     if request.method == 'POST':
         form = RoomForm(request.POST, instance=room)
 
         if form.is_valid():
             room = form.save()
-            return redirect('cinema:edit_cinema', cinema_id=room.cinema_id)
+            return redirect('cinema:edit_cinema', pk=room.cinema_id)
     else:
         form = RoomForm(instance=room)
 
@@ -52,16 +52,16 @@ def edit_room(request, cinema_id, pk):
 
 
 def delete_room(request, cinema_id, pk):
-    room = get_object_or_404(Room, id=pk, cinema_id=cinema_id)
+    room = get_object_or_404(Room, pk=pk, cinema_id=cinema_id)
     room.delete()
-    return redirect('cinema:edit_cinema', cinema_id=cinema_id)
+    return redirect('cinema:edit_cinema', pk=cinema_id)
 
 
 def room_list(request, cinema_id):
     template_name = 'room/room_list.html'
 
-    cinema = get_object_or_404(Cinema, id=cinema_id)
-    rooms = Room.objects.filter(cinema_id=cinema.id)
+    cinema = get_object_or_404(Cinema, pk=cinema_id)
+    rooms = Room.objects.filter(cinema=cinema)
 
     context = {
         'cinema': cinema,
