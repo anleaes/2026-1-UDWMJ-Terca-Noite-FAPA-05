@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'screening.apps.ScreeningConfig',
     'movie.apps.MovieConfig',
     'accounts.apps.AccountsConfig',
+    'ticket.apps.TicketConfig',
 ]
 
 MIDDLEWARE = [
