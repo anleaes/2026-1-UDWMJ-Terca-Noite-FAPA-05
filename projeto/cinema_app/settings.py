@@ -48,6 +48,9 @@ INSTALLED_APPS = [
     'person.apps.PersonConfig',
     'room.apps.RoomConfig',
     'employee.apps.EmployeeConfig',
+    'genre.apps.GenreConfig',
+    'order.apps.OrderConfig',
+    'payment.apps.PaymentConfig',
     'seat.apps.SeatConfig',
     'screening.apps.ScreeningConfig',
 ]

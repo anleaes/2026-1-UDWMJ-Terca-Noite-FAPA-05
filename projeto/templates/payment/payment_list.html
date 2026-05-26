@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}
+    Payment List - {{ block.super }}
+{% endblock title %}
+{% block body %}
+<br />
+    <a href="{% url 'payment:add_payment' %}">Register Payment</a>
+<br />
+<br />
+<b>Payment List</b></h5>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Payment Method</th>
+        <th>Transaction Status</th>
+        <th>Charged Amount</th>
+        <th>Receipt</th>
+        <th>Order</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for payment in payments %}
+        <tr>
+            <td>{{ payment.id }}</td>
+            <td>{{ payment.payment_method }}</td>
+            <td>{{ payment.transaction_status }}</td>
+            <td>{{ payment.charged_amount }}</td>
+            <td>{{ payment.receipt }}</td>
+            <td>{{ payment.order }}</td>
+            <td>
+                <a href="{% url 'payment:edit_payment' payment.id %}">Edit</a>
+            </td>
+            <td>
+                <a href="{% url 'payment:delete_payment' payment.id %}">Delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock body %}

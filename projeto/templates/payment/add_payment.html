@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}
+    Register Payment - {{ block.super }}
+{% endblock title %}
+{% block body %}
+<br />
+<b>Register Payment</b>
+<br />
+<br />
+<form action="" method="POST">
+{% csrf_token %}
+    <label>Payment Method</label>
+    <br />
+    {{ form.payment_method }}
+    <br />
+    <label>Transaction Status</label>
+    <br />
+    {{ form.transaction_status }}
+    <br />
+    <label>Charged Amount</label>
+    <br />
+    {{ form.charged_amount }}
+    <br />
+    <br />
+    <label>Receipt</label>
+    <br />
+    {{ form.receipt }}
+    <br />
+    <br />
+    <label>Order</label>
+    <br />
+    {{ form.order }}
+    <br />
+    <br />
+    <button type="submit">Save</button>
+</form>
+{% endblock body %}

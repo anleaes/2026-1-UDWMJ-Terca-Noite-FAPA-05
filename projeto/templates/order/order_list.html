@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}
+    Order List - {{ block.super }}
+{% endblock title %}
+{% block body %}
+<br />
+    <a href="{% url 'order:add_order' %}">Register Order</a>
+<br />
+<br />
+<b>Order List</b></h5>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Date Created</th>
+        <th>Status</th>
+        <th>Total Price</th>
+        <th>Client</th>
+        <th>Employee</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for order in orders %}
+        <tr>
+            <td>{{ order.id }}</td>
+            <td>{{ order.date_created }}</td>
+            <td>{{ order.status }}</td>
+            <td>{{ order.total_price }}</td>
+            <td>{{ order.client }}</td>
+            <td>{{ order.employee }}</td>
+            <td>
+                <a href="{% url 'order:edit_order' order.id %}">Edit</a>
+            </td>
+            <td>
+                <a href="{% url 'order:delete_order' order.id %}">Delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock body %}
