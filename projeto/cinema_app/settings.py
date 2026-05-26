@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'widget_tweaks',
     'core.apps.CoreConfig',
     'cinema.apps.CinemaConfig',
     'client.apps.ClientConfig',
@@ -53,7 +54,8 @@ INSTALLED_APPS = [
     'payment.apps.PaymentConfig',
     'seat.apps.SeatConfig',
     'screening.apps.ScreeningConfig',
-    'movie.apps.MovieConfig',	
+    'movie.apps.MovieConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
