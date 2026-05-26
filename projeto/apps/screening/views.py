@@ -1,5 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
+from .models import Screening
+from .forms import ScreeningForm
+
 # Create your views here.
 def screening_list(request):
     template_name = 'screening/screening_list.html'
@@ -39,7 +42,7 @@ def edit_screening(request, pk):
         if form.is_valid():
             screening = form.save()
             return redirect('screening:screening_list')
-    else:g
+    else:
         form = ScreeningForm(instance=screening)
 
     context = {

@@ -1,6 +1,4 @@
 from django.db import models
-from cinema.models import Room
-from movie.models import Movie
 
 # Create your models here.
 
@@ -17,4 +15,4 @@ class Screening(models.Model):
         ordering = ['id']
 
     def __str__(self):
-        return f"{self.movie.title} at {self.start_time}" in {self.room.cinema.name}, room{self.room.id}"
+        return f"{self.movie.title} at {self.start_time} in {self.room.cinema.name}, room{self.room.id}"
