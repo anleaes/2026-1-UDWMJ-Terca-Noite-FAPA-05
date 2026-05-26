@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect,get_object_or_404
-
+from django.contrib.auth.decorators import login_required
 from .forms import GenreForm
 from .models import Genre
 
 # Create your views here.
+
+@login_required(login_url='/accounts/user_login/')
 def add_genre(request):
     template_name = 'genre/add_genre.html'
     context = {}
@@ -20,6 +22,7 @@ def add_genre(request):
     context['form'] = form
     return render(request, template_name, context)
 
+@login_required(login_url='/accounts/user_login/')
 def genre_list(request):
     template_name = 'genre/genre_list.html'
     genres = Genre.objects.all()
@@ -29,6 +32,7 @@ def genre_list(request):
 
     return render(request, template_name, context)
 
+@login_required(login_url='/accounts/user_login/')
 def edit_genre(request, pk):
     template_name = 'genre/add_genre.html'
     context = {}
@@ -46,6 +50,7 @@ def edit_genre(request, pk):
     context['form'] = form
     return render(request, template_name, context)
 
+@login_required(login_url='/accounts/user_login/')
 def delete_genre(request, pk):
     genre = get_object_or_404(Genre, pk=pk)
     genre.delete()
