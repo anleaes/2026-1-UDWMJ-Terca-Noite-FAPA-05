@@ -57,7 +57,8 @@
     <thead>
         <tr>
             <th>ID</th>
-            <th>Capacity</th>
+            <th>Rows</th>
+            <th>Columns</th>
             <th>Projection Type</th>
             <th>Accessibility</th>
             <th></th>
@@ -70,7 +71,8 @@
     {% for room in rooms %}
         <tr>
             <td>{{ room.id }}</td>
-            <td>{{ room.capacity }}</td>
+            <td>{{ room.rows }}</td>
+            <td>{{ room.columns }}</td>
             <td>{{ room.projection_type }}</td>
 
             <td>

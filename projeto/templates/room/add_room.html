@@ -11,11 +11,16 @@
 <form method="POST">
     {% csrf_token %}
 
-    <label>Capacity</label>
+    <label>Rows</label>
     <br />
-    {{ form.capacity }}
+    {{ form.rows }}
     <br />
     <br />
+    <label>Columns</label>
+    <br />  
+    {{ form.columns }}
+    <br />
+    <br />  
 
     <label>Projection Type</label>
     <br />

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}
+    Register Movie - {{ block.super }}
+{% endblock title %}
+{% block body %}
+<br />
+<b>Register Movie</b>
+<br />
+<br />
+<form action="" method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+    <label>Title</label>
+    <br />
+    {{ form.title }}
+    <br />
+    <label>Synopsis</label>
+    <br />
+    {{ form.synopsis }}
+    <br />
+    <label>Duration Minutes</label>
+    <br />
+    {{ form.duration_minutes }}
+    <br />
+    <br />
+    <label>Age rating</label>
+    <br />
+    {{ form.age_rating }}
+    <br />
+    <br />
+    <label>Poster</label>
+    <br />
+    {{ form.poster }}
+    <br />
+    <label>Genre</label>
+    <br />
+    {{ form.genres }}
+    <br />
+    <br />
+    <button type="submit">Save</button>
+</form>
+{% endblock body %}

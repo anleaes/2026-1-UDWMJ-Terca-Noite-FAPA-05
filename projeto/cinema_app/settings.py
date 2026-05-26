@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'employee.apps.EmployeeConfig',
     'genre.apps.GenreConfig',
     'order.apps.OrderConfig',
+    'seat.apps.SeatConfig',
 ]
 
 MIDDLEWARE = [
