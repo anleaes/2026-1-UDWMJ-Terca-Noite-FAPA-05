@@ -1,8 +1,16 @@
+from django.conf import settings
 from django.db import models
 from person.models import Person
 
 # Create your models here.
 class Client(Person):
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name='client_profile',
+    )
     gender = models.CharField(max_length=1, choices=[
         ('M', 'Male'),
         ('F', 'Female'),
@@ -16,4 +24,4 @@ class Client(Person):
         ordering = ['id']
 
     def __str__(self):
-        return self.name
+        return f'{self.first_name} {self.last_name}'
