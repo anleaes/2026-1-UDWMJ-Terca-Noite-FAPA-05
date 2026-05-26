@@ -32,5 +32,6 @@ urlpatterns = [
     path('payment/', include('payment.urls', namespace='payment')),
     path('movie/', include('movie.urls', namespace='movie')),
     path('accounts/', include('accounts.urls', namespace='accounts')),
+    path('ticket/', include('ticket.urls', namespace='ticket')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
