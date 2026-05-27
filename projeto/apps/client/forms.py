@@ -6,4 +6,4 @@ from .models import Client
 class ClientForm(forms.ModelForm):
     class Meta:
         model = Client
-        exclude = ['user']
+        fields = '__all__'
