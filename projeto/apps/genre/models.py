@@ -9,7 +9,7 @@ class Genre(models.Model):
     active = models.BooleanField(default=True)
 
     class Meta:
-        db_table = 'genre'
+        db_table = 'genres'
         ordering = ['id']
 
     def __str__(self):

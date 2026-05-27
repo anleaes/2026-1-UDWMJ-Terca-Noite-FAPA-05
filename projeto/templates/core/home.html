@@ -7,9 +7,9 @@
     <h1>Cinema App</h1>
 
     {% if user.is_authenticated %}
-    <p>Welcome, {{ user.username }}. You have full access to the system.</p>
+    <p>Welcome, {{ user.username }}.</p>
     {% else %}
-    <p>Browse public listings or <a href="{% url 'accounts:user_login' %}">log in</a> to manage everything.</p>
+    <p> <a href="{% url 'accounts:user_login' %}">log in</a> to manage everything.</p>
     {% endif %}
 </main>
 {% endblock body %}

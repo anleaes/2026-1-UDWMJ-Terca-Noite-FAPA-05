@@ -11,7 +11,7 @@ class Screening(models.Model):
 
 
     class Meta:
-        db_table = 'screening'
+        db_table = 'screenings'
         ordering = ['id']
 
     def __str__(self):

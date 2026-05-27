@@ -4,7 +4,7 @@
 {% endblock title %}
 {% block body %}
 <br />
-{% if user.is_authenticated and user.is_staff %}
+{% if user.is_authenticated %}
     <a href="{% url 'cinema:add_cinema' %}">Register Cinema</a>
 <br />
 <br />
@@ -18,7 +18,7 @@
         <th>Address</th>
         <th>Phone</th>
         <th>CNPJ</th>
-        {% if user.is_authenticated and user.is_staff %}
+        {% if user.is_authenticated %}
         <th></th>
         <th></th>
         {% endif %}

@@ -9,6 +9,10 @@ class Room(models.Model):
     accessibility = models.BooleanField(default=False)
     cinema = models.ForeignKey('cinema.Cinema', on_delete=models.CASCADE, related_name='rooms')
 
+    class Meta:
+        db_table = 'rooms'
+        ordering = ['id']
+
     def save(self, *args, **kwargs):
         is_new = self.pk is None
         super().save(*args, **kwargs)

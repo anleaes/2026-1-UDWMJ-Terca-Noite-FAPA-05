@@ -10,7 +10,7 @@ class Person(models.Model):
     email = models.EmailField('E-mail',null=False, blank=False)
 
     class Meta:
-        db_table = 'person'
+        db_table = 'persons'
         ordering = ['id']
 
 
