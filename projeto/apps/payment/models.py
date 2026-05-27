@@ -11,7 +11,7 @@ class Payment(models.Model):
     order = models.OneToOneField('order.Order', on_delete=models.CASCADE, related_name='payment')
     
     class Meta:
-        db_table = 'payment'
+        db_table = 'payments'
         ordering = ['id']
 
     def __str__(self):

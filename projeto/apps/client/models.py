@@ -20,7 +20,7 @@ class Client(Person):
     date_of_birth = models.DateField()
 
     class Meta:
-        db_table = 'client'
+        db_table = 'clients'
         ordering = ['id']
 
     def __str__(self):

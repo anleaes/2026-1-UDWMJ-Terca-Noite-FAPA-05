@@ -1,11 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
-from accounts.decorators import employee_required
 from .forms import CinemaForm
 from .models import Cinema
+from django.contrib.auth.decorators import login_required
 
 
-@employee_required
+@login_required(login_url='/accounts/user_login/')
 def add_cinema(request):
     template_name = 'cinema/add_cinema.html'
     context = {}
@@ -33,7 +33,7 @@ def cinema_list(request):
     return render(request, template_name, context)
 
 
-@employee_required
+@login_required(login_url='/accounts/user_login/')
 def edit_cinema(request, pk):
     template_name = 'cinema/edit_cinema.html'
 
@@ -64,7 +64,7 @@ def edit_cinema(request, pk):
     return render(request, template_name, context)
 
 
-@employee_required
+@login_required(login_url='/accounts/user_login/')
 def delete_cinema(request, pk):
     cinema = Cinema.objects.get(pk=pk)
     cinema.delete()

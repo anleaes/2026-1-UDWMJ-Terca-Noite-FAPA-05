@@ -16,7 +16,6 @@
         <th>Status</th>
         <th>Total Price</th>
         <th>Client</th>
-        <th>Employee</th>
         <th></th>
         <th></th>
     </tr>
@@ -29,7 +28,6 @@
             <td>{{ order.status }}</td>
             <td>{{ order.total_price }}</td>
             <td>{{ order.client }}</td>
-            <td>{{ order.employee }}</td>
             <td>
                 <a href="{% url 'order:edit_order' order.id %}">Edit</a>
             </td>

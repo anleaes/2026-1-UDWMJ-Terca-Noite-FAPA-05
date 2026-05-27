@@ -1,20 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
-from accounts.decorators import employee_required
 from .forms import ClientForm
 from .models import Client
+from django.contrib.auth.decorators import login_required
 
-
-def _sync_user_from_client(client):
-    if client.user_id:
-        user = client.user
-        user.first_name = client.first_name
-        user.last_name = client.last_name
-        user.email = client.email
-        user.save()
-
-
-@employee_required
+@login_required(login_url='/accounts/user_login/')
 def client_list(request):
     template_name = 'client/client_list.html'
     clients = Client.objects.all()
@@ -25,7 +15,7 @@ def client_list(request):
     return render(request, template_name, context)
 
 
-@employee_required
+@login_required(login_url='/accounts/user_login/')
 def edit_client(request, pk):
     template_name = 'client/add_client.html'
     context = {}
@@ -46,7 +36,7 @@ def edit_client(request, pk):
     return render(request, template_name, context)
 
 
-@employee_required
+@login_required(login_url='/accounts/user_login/')
 def delete_client(request, pk):
     client = get_object_or_404(Client, pk=pk)
     user = client.user

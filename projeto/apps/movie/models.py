@@ -18,7 +18,7 @@ class Movie(models.Model):
     )
 
     class Meta:
-        db_table = 'movie'
+        db_table = 'movies'
         ordering = ['id']
 
 

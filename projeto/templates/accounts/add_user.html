@@ -3,21 +3,12 @@
 {% load widget_tweaks %}
 
 {% block title %}
-    Register Client - {{ block.super }}
+    New User - {{ block.super}}
 {% endblock title %}
 
 {% block body %}
 
-<b>Register Client</b>
-<br />
-<br />
-
-{% if form.errors %}
-<p style="color: red;">Error:</p>
-{{ form.errors }}
-<br />
-{% endif %}
-
+<b>New user</b>
 <form action="" method="POST">
 {% csrf_token %}
     <label>Name</label>
@@ -29,48 +20,24 @@
     <br />
     {{ form.last_name }}
     <br />
-    <br />
+    <br />              
     <label>Username</label>
-    <br />
+    <br /> 
+    <br /> 
     {{ form.username }}
-    <br />
-    <br />
-    <label>E-mail</label>
-    <br />
+    <br /> 
+    <label>Email</label>
+    <br /> 
+    <br /> 
     {{ form.email }}
-    <br />
-    <br />
+    <br /> 
+    <br /> 
     <label>Password</label>
-    <br />
+    <br /> 
     {{ form.password|attr:"type:password" }}
-    <br />
-    <br />
-    <label>Address</label>
-    <br />
-    {{ form.address }}
-    <br />
-    <br />
-    <label>Phone</label>
-    <br />
-    {{ form.phone }}
-    <br />
-    <br />
-    <label>Gender</label>
-    <br />
-    {{ form.gender }}
-    <br />
-    <br />
-    <label>CPF</label>
-    <br />
-    {{ form.cpf }}
-    <br />
-    <br />
-    <label>Date of Birth</label>
-    <br />
-    {{ form.date_of_birth }}
-    <br />
-    <br />
-    <button type="submit">Register</button>
+    <br /> 
+    <br />            
+    <button type="submit" >Save</button>
 </form>
 
 {% endblock body %}

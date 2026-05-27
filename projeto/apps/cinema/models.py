@@ -8,7 +8,7 @@ class Cinema(models.Model):
     cnpj = models.CharField(max_length=20)
 
     class Meta:
-        db_table = 'cinema'
+        db_table = 'cinemas'
         ordering = ['id']
 
 

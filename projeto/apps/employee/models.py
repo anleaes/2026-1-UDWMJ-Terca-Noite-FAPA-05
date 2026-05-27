@@ -16,7 +16,7 @@ class Employee(Person):
     salary = models.DecimalField(max_digits=10, decimal_places=2)
 
     class Meta:
-        db_table = 'employee'
+        db_table = 'employees'
         ordering = ['id']
 
     def __str__(self):

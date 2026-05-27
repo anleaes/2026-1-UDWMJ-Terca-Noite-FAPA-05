@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
-from accounts.decorators import employee_required
 from .models import Screening
 from .forms import ScreeningForm
+from django.contrib.auth.decorators import login_required
 
+# Create your views here.
 
 def screening_list(request):
     template_name = 'screening/screening_list.html'
@@ -14,8 +15,7 @@ def screening_list(request):
 
     return render(request, template_name, context)
 
-
-@employee_required
+@login_required(login_url='/accounts/user_login/')
 def add_screening(request):
     template_name = 'screening/add_screening.html'
 
@@ -34,8 +34,7 @@ def add_screening(request):
 
     return render(request, template_name, context)
 
-
-@employee_required
+@login_required(login_url='/accounts/user_login/')
 def edit_screening(request, pk):
     template_name = 'screening/add_screening.html'
 
@@ -45,7 +44,7 @@ def edit_screening(request, pk):
         form = ScreeningForm(request.POST, instance=screening)
 
         if form.is_valid():
-            form.save()
+            screening = form.save()
             return redirect('screening:screening_list')
     else:
         form = ScreeningForm(instance=screening)
@@ -56,9 +55,8 @@ def edit_screening(request, pk):
 
     return render(request, template_name, context)
 
-
-@employee_required
+@login_required(login_url='/accounts/user_login/')
 def delete_screening(request, pk):
-    screening = get_object_or_404(Screening, pk=pk)
+    screening = Screening.objects.get(pk=pk)
     screening.delete()
     return redirect('screening:screening_list')
