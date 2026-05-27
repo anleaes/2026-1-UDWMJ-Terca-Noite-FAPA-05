@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
-from accounts.decorators import client_required
 from .forms import PaymentForm
 from .models import Payment
+from django.contrib.auth.decorators import login_required
 
 
-@client_required
+@login_required(login_url='/accounts/user_login/')
 def add_payment(request):
     template_name = 'payment/add_payment.html'
     context = {}
@@ -22,7 +22,7 @@ def add_payment(request):
     return render(request, template_name, context)
 
 
-@client_required
+@login_required(login_url='/accounts/user_login/')
 def payment_list(request):
     template_name = 'payment/payment_list.html'
     payments = Payment.objects.all()
@@ -32,7 +32,7 @@ def payment_list(request):
     return render(request, template_name, context)
 
 
-@client_required
+@login_required(login_url='/accounts/user_login/')
 def edit_payment(request, pk):
     template_name = 'payment/edit_payment.html'
     payment = get_object_or_404(Payment, pk=pk)
@@ -42,7 +42,7 @@ def edit_payment(request, pk):
     return render(request, template_name, context)
 
 
-@client_required
+@login_required(login_url='/accounts/user_login/')
 def delete_payment(request, pk):
     payment = get_object_or_404(Payment, pk=pk)
     payment.delete()

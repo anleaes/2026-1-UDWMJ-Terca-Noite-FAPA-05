@@ -7,21 +7,9 @@
     <h1>Cinema App</h1>
 
     {% if user.is_authenticated %}
-    <p>Welcome, {{ user.username }}.</p>
-    {% if user_is_employee %}
-    <p>You are signed in as an employee.</p>
-    {% elif user_is_client %}
-    <p>You are signed in as a client.</p>
-    {% endif %}
+    <p>Welcome, {{ user.username }}. You have full access to the system.</p>
     {% else %}
-    <p>Browse movies and screenings without an account, or sign in below.</p>
-    <p>
-        <a href="{% url 'accounts:user_login' %}">Client Login</a>
-        &nbsp;|&nbsp;
-        <a href="{% url 'accounts:employee_login' %}">Employee Login</a>
-        &nbsp;|&nbsp;
-        <a href="{% url 'accounts:add_user' %}">Register (client)</a>
-    </p>
+    <p>Browse public listings or <a href="{% url 'accounts:user_login' %}">log in</a> to manage everything.</p>
     {% endif %}
 </main>
 {% endblock body %}

@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
-from accounts.decorators import employee_required
 from .forms import RoomForm
 from .models import Room
 from cinema.models import Cinema
+from django.contrib.auth.decorators import login_required
 
 
-@employee_required
+@login_required(login_url='/accounts/user_login/')
 def add_room(request, cinema_id):
     template_name = 'room/add_room.html'
     cinema = get_object_or_404(Cinema, pk=cinema_id)
@@ -31,7 +31,7 @@ def add_room(request, cinema_id):
     return render(request, template_name, context)
 
 
-@employee_required
+@login_required(login_url='/accounts/user_login/')
 def edit_room(request, cinema_id, pk):
     template_name = 'room/add_room.html'
 
@@ -55,7 +55,7 @@ def edit_room(request, cinema_id, pk):
     return render(request, template_name, context)
 
 
-@employee_required
+@login_required(login_url='/accounts/user_login/')
 def delete_room(request, cinema_id, pk):
     room = get_object_or_404(Room, pk=pk, cinema_id=cinema_id)
     room.delete()

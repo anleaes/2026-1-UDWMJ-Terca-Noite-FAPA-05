@@ -1,11 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
-from accounts.decorators import employee_required
 from .models import Movie
 from .forms import MovieForm
+from django.contrib.auth.decorators import login_required
 
 
-@employee_required
+@login_required(login_url='/accounts/user_login/')
 def add_movie(request):
     template_name = 'movie/add_movie.html'
     context = {}
@@ -34,7 +34,7 @@ def movie_list(request):
     return render(request, template_name, context)
 
 
-@employee_required
+@login_required(login_url='/accounts/user_login/')
 def edit_movie(request, pk):
     template_name = 'movie/add_movie.html'
     context = {}
@@ -59,7 +59,7 @@ def edit_movie(request, pk):
     return render(request, template_name, context)
 
 
-@employee_required
+@login_required(login_url='/accounts/user_login/')
 def delete_movie(request, movie_id):
     movie = get_object_or_404(Movie, pk=movie_id)
 
