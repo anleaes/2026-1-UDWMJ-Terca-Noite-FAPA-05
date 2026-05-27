@@ -5,7 +5,6 @@ from django.db import models
 class Genre(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
-    code = models.CharField(max_length=100)
     active = models.BooleanField(default=True)
 
     class Meta:
