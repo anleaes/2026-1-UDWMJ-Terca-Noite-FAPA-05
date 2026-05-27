@@ -16,4 +16,4 @@ class Seat(models.Model):
         ordering = ['id']
 
     def __str__(self):
-        return f"Seat {self.row}{self.number} in Room {self.room.id} is {self.status}"
+        return f'Seat {self.row}{self.number} (Room {self.room_id})'

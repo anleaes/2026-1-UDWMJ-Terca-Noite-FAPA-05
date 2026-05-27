@@ -4,21 +4,18 @@
 {% endblock title %}
 {% block body %}
 <br />
-    <a href="{% url 'payment:add_payment' %}">Register Payment</a>
+<p><a href="{% url 'payment:pending_payments' %}">Pending approvals</a></p>
 <br />
-<br />
-<b>Payment List</b></h5>
+<b>Payment List</b>
 <table border="1">
     <thead>
     <tr>
         <th>ID</th>
         <th>Payment Method</th>
-        <th>Transaction Status</th>
-        <th>Charged Amount</th>
-        <th>Receipt</th>
+        <th>Status</th>
+        <th>Amount</th>
         <th>Order</th>
-        <th></th>
-        <th></th>
+        <th>Client</th>
     </tr>
     </thead>
     <tbody>
@@ -26,16 +23,14 @@
         <tr>
             <td>{{ payment.id }}</td>
             <td>{{ payment.payment_method }}</td>
-            <td>{{ payment.transaction_status }}</td>
+            <td>{{ payment.get_transaction_status_display }}</td>
             <td>{{ payment.charged_amount }}</td>
-            <td>{{ payment.receipt }}</td>
-            <td>{{ payment.order }}</td>
-            <td>
-                <a href="{% url 'payment:edit_payment' payment.id %}">Edit</a>
-            </td>
-            <td>
-                <a href="{% url 'payment:delete_payment' payment.id %}">Delete</a>
-            </td>
+            <td>#{{ payment.order.id }}</td>
+            <td>{% if payment.order.client %}{{ payment.order.client }}{% else %}{{ payment.order.user.username }}{% endif %}</td>
+        </tr>
+    {% empty %}
+        <tr>
+            <td colspan="6">No payments.</td>
         </tr>
     {% endfor %}
     </tbody>

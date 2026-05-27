@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}
+    Payment - Order #{{ order.id }} - {{ block.super }}
+{% endblock title %}
+{% block body %}
+<br />
+<h1>Payment for order #{{ order.id }}</h1>
+<p><b>Total:</b> {{ order.total_price }}</p>
+
+<h2>Tickets</h2>
+<ul>
+    {% for ticket in order.tickets.all %}
+    <li>{{ ticket.seat }} — {{ ticket.unit_price }}</li>
+    {% endfor %}
+</ul>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label>Payment method</label>
+    <br />
+    {{ form.payment_method }}
+    <br /><br />
+    <label>Receipt (optional)</label>
+    <br />
+    {{ form.receipt }}
+    <br /><br />
+    <button type="submit">Submit payment</button>
+</form>
+
+<p><a href="{% url 'order:order_detail' order.id %}">Back to order</a></p>
+{% endblock body %}
