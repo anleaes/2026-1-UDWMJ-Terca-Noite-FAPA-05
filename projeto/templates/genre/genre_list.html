@@ -16,7 +16,6 @@
         <th>ID</th>
         <th>Name</th>
         <th>Description</th>
-        <th>Code</th>
         <th>Active</th>
         {% if user.is_authenticated %}
         <th></th>
@@ -30,7 +29,6 @@
             <td>{{ genre.id }}</td>
             <td>{{ genre.name }}</td>
             <td>{{ genre.description }}</td>
-            <td>{{ genre.code }}</td>
             <td>{{ genre.active }}</td>
             {% if user.is_authenticated %}
             <td>
