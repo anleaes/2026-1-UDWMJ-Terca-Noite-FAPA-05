@@ -1,23 +1,21 @@
 {% extends 'base.html' %}
 {% block title %}
-    Order List - {{ block.super }}
+    My Orders - {{ block.super }}
 {% endblock title %}
 {% block body %}
 <br />
-    <a href="{% url 'order:add_order' %}">Register Order</a>
+<p><a href="{% url 'screening:screening_list' %}">Buy tickets (choose a screening)</a></p>
 <br />
-<br />
-<b>Order List</b></h5>
+<b>My Orders</b>
 <table border="1">
     <thead>
     <tr>
         <th>ID</th>
-        <th>Date Created</th>
+        <th>Date</th>
         <th>Status</th>
-        <th>Total Price</th>
-        <th>Client</th>
-        <th></th>
-        <th></th>
+        <th>Total</th>
+        <th>Screening</th>
+        <th>Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -25,15 +23,24 @@
         <tr>
             <td>{{ order.id }}</td>
             <td>{{ order.date_created }}</td>
-            <td>{{ order.status }}</td>
+            <td>{{ order.get_status_display }}</td>
             <td>{{ order.total_price }}</td>
-            <td>{{ order.client }}</td>
+            <td>{{ order.screening }}</td>
             <td>
-                <a href="{% url 'order:edit_order' order.id %}">Edit</a>
+                <a href="{% url 'order:order_detail' order.id %}">View</a>
+                {% if order.status == 'pending_seats' %}
+                | <a href="{% url 'ticket:select_seats' order.id %}">Select seats</a>
+                {% elif order.status == 'pending_payment' %}
+                | <a href="{% url 'payment:checkout' order.id %}">Pay</a>
+                {% endif %}
+                {% if order.status != 'completed' and order.status != 'cancelled' %}
+                | <a href="{% url 'order:cancel_order' order.id %}">Cancel</a>
+                {% endif %}
             </td>
-            <td>
-                <a href="{% url 'order:delete_order' order.id %}">Delete</a>
-            </td>
+        </tr>
+    {% empty %}
+        <tr>
+            <td colspan="6">No orders yet.</td>
         </tr>
     {% endfor %}
     </tbody>

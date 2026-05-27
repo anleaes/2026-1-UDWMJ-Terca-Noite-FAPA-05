@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}
+    Select Seats - {{ block.super }}
+{% endblock title %}
+{% block body %}
+<br />
+<h1>Select seats</h1>
+<p><b>Order:</b> #{{ order.id }}</p>
+<p><b>Screening:</b> {{ screening }}</p>
+<p><b>Price per seat:</b> {{ screening.price }}</p>
+
+<form method="post">
+    {% csrf_token %}
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Select</th>
+                <th>Seat</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in seats %}
+            <tr>
+                <td>
+                    {% if not item.occupied %}
+                    <input type="checkbox" name="seats" value="{{ item.seat.id }}">
+                    {% endif %}
+                </td>
+                <td>{{ item.seat.row }}{{ item.seat.number }}</td>
+                <td>
+                    {% if item.occupied %}
+                    Occupied
+                    {% else %}
+                    Available
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br />
+    <button type="submit">Confirm seats</button>
+</form>
+
+<p><a href="{% url 'order:order_list' %}">Cancel</a></p>
+{% endblock body %}

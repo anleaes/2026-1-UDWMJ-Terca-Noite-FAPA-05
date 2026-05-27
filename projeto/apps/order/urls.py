@@ -5,7 +5,7 @@ app_name = 'order'
 
 urlpatterns = [
     path('', views.order_list, name='order_list'),
-    path('add/', views.add_order, name='add_order'),
-    path('edit/<int:pk>/', views.edit_order, name='edit_order'),
-    path('delete/<int:pk>/', views.delete_order, name='delete_order'),
+    path('start/<int:screening_id>/', views.start_order, name='start_order'),
+    path('<int:pk>/', views.order_detail, name='order_detail'),
+    path('<int:pk>/cancel/', views.cancel_order, name='cancel_order'),
 ]

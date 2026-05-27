@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('client', '0001_initial'),
-        ('employee', '0001_initial'),
+        ('screening', '0001_initial'),
     ]
 
     operations = [
@@ -19,10 +19,10 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('date_created', models.DateTimeField(auto_now_add=True)),
-                ('status', models.CharField(max_length=100)),
-                ('total_price', models.DecimalField(decimal_places=2, max_digits=10)),
+                ('status', models.CharField(choices=[('pending_seats', 'Pending seats'), ('pending_payment', 'Pending payment'), ('pending_approval', 'Pending approval'), ('completed', 'Completed'), ('cancelled', 'Cancelled')], default='pending_seats', max_length=30)),
+                ('total_price', models.DecimalField(decimal_places=2, default=0, max_digits=10)),
                 ('client', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='orders', to='client.client')),
-                ('employee', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='orders', to='employee.employee')),
+                ('screening', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='orders', to='screening.screening')),
             ],
             options={
                 'db_table': 'orders',
