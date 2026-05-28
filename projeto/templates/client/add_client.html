@@ -3,47 +3,31 @@
     Register Client - {{ block.super }}
 {% endblock title %}
 {% block body %}
-<br />
-<b>{% if editing %}Edit Client{% else %}Client{% endif %}</b>
-<br />
-<br />
-<form action="" method="POST">
-{% csrf_token %}
-    <label>Name</label>
-    <br />
-    {{ form.first_name }}
-    <br />
-    <label>Last Name</label>
-    <br />
-    {{ form.last_name }}
-    <br />
-    <label>Address</label>
-    <br />
-    {{ form.address }}
-    <br />
-    <br />
-    <label>Phone</label>
-    <br />
-    {{ form.phone }}
-    <br />
-    <br />
-    <label>Email</label>
-    <br />
-    {{ form.email }}
-    <br />
-    <label>Gender</label>
-    <br />
-    {{ form.gender }}
-    <br />
-    <label>CPF</label>
-    <br />
-    {{ form.cpf }}
-    <br />
-    <label>Date of Birth</label>
-    <br />
-    {{ form.date_of_birth }}
-    <br />
-    <br />
-    <button type="submit">Save</button>
-</form>
+<main class="form-page">
+    <section class="form-card">
+        <h1 class="form-title">{% if editing %}Edit Client{% else %}Register Client{% endif %}</h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <label>Name</label>
+            {{ form.first_name }}
+            <label>Last Name</label>
+            {{ form.last_name }}
+            <label>Address</label>
+            {{ form.address }}
+            <label>Phone</label>
+            {{ form.phone }}
+            <label>Email</label>
+            {{ form.email }}
+            <label>Gender</label>
+            {{ form.gender }}
+            <label>CPF</label>
+            {{ form.cpf }}
+            <label>Date of Birth</label>
+            {{ form.date_of_birth }}
+            <div class="form-actions">
+                <button type="submit" class="btn">Save</button>
+            </div>
+        </form>
+    </section>
+</main>
 {% endblock body %}

@@ -3,35 +3,25 @@
     Register Payment - {{ block.super }}
 {% endblock title %}
 {% block body %}
-<br />
-<b>Register Payment</b>
-<br />
-<br />
-<form action="" method="POST">
-{% csrf_token %}
-    <label>Payment Method</label>
-    <br />
-    {{ form.payment_method }}
-    <br />
-    <label>Transaction Status</label>
-    <br />
-    {{ form.transaction_status }}
-    <br />
-    <label>Charged Amount</label>
-    <br />
-    {{ form.charged_amount }}
-    <br />
-    <br />
-    <label>Receipt</label>
-    <br />
-    {{ form.receipt }}
-    <br />
-    <br />
-    <label>Order</label>
-    <br />
-    {{ form.order }}
-    <br />
-    <br />
-    <button type="submit">Save</button>
-</form>
+<main class="form-page">
+    <section class="form-card">
+        <h1 class="form-title">Register Payment</h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <label>Payment Method</label>
+            {{ form.payment_method }}
+            <label>Transaction Status</label>
+            {{ form.transaction_status }}
+            <label>Charged Amount</label>
+            {{ form.charged_amount }}
+            <label>Receipt</label>
+            {{ form.receipt }}
+            <label>Order</label>
+            {{ form.order }}
+            <div class="form-actions">
+                <button type="submit" class="btn">Save</button>
+            </div>
+        </form>
+    </section>
+</main>
 {% endblock body %}

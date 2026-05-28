@@ -3,39 +3,27 @@
     Register Movie - {{ block.super }}
 {% endblock title %}
 {% block body %}
-<br />
-<b>Register Movie</b>
-<br />
-<br />
-<form action="" method="POST" enctype="multipart/form-data">
-{% csrf_token %}
-    <label>Title</label>
-    <br />
-    {{ form.title }}
-    <br />
-    <label>Synopsis</label>
-    <br />
-    {{ form.synopsis }}
-    <br />
-    <label>Duration Minutes</label>
-    <br />
-    {{ form.duration_minutes }}
-    <br />
-    <br />
-    <label>Age rating</label>
-    <br />
-    {{ form.age_rating }}
-    <br />
-    <br />
-    <label>Poster</label>
-    <br />
-    {{ form.poster }}
-    <br />
-    <label>Genre</label>
-    <br />
-    {{ form.genres }}
-    <br />
-    <br />
-    <button type="submit">Save</button>
-</form>
+<main class="form-page">
+    <section class="form-card">
+        <h1 class="form-title">Register Movie</h1>
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label>Title</label>
+            {{ form.title }}
+            <label>Synopsis</label>
+            {{ form.synopsis }}
+            <label>Duration Minutes</label>
+            {{ form.duration_minutes }}
+            <label>Age Rating</label>
+            {{ form.age_rating }}
+            <label>Poster</label>
+            {{ form.poster }}
+            <label>Genre</label>
+            {{ form.genres }}
+            <div class="form-actions">
+                <button type="submit" class="btn">Save</button>
+            </div>
+        </form>
+    </section>
+</main>
 {% endblock body %}

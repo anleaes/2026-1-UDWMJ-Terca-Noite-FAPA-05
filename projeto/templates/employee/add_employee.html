@@ -3,52 +3,33 @@
     Register Employee - {{ block.super }}
 {% endblock title %}
 {% block body %}
-<br />
-<b>Register Employee</b>
-<br />
-<br />
-<form action="" method="POST">
-{% csrf_token %}
-    <label>Name</label>
-    <br />
-    {{ form.first_name }}
-    <br />
-    <label>Last Name</label>
-    <br />
-    {{ form.last_name }}
-    <br />
-    <label>Address</label>
-    <br />
-    {{ form.address }}
-    <br />
-    <br />
-    <label>Phone</label>
-    <br />
-    {{ form.phone }}
-    <br />
-    <br />
-    <label>Email</label>
-    <br />
-    {{ form.email }}
-    <br />
-    <label>Salary</label>
-    <br />
-    {{ form.salary }}
-    <br />
-    <label>Role</label>
-    <br />
-    {{ form.role }}
-    <br />
-    <label>Hire Date</label>
-    <br />
-    {{ form.hire_date }}
-    <br />
-    <br />
-    <label>Active</label>
-    <br />
-    {{ form.active }}
-    <br />
-    <br />
-    <button type="submit">Save</button>
-</form>
+<main class="form-page">
+    <section class="form-card">
+        <h1 class="form-title">Register Employee</h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <label>Name</label>
+            {{ form.first_name }}
+            <label>Last Name</label>
+            {{ form.last_name }}
+            <label>Address</label>
+            {{ form.address }}
+            <label>Phone</label>
+            {{ form.phone }}
+            <label>Email</label>
+            {{ form.email }}
+            <label>Salary</label>
+            {{ form.salary }}
+            <label>Role</label>
+            {{ form.role }}
+            <label>Hire Date</label>
+            {{ form.hire_date }}
+            <label>Active</label>
+            {{ form.active }}
+            <div class="form-actions">
+                <button type="submit" class="btn">Save</button>
+            </div>
+        </form>
+    </section>
+</main>
 {% endblock body %}

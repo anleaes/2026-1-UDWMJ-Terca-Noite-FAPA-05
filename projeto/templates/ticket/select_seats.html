@@ -3,45 +3,46 @@
     Select Seats - {{ block.super }}
 {% endblock title %}
 {% block body %}
-<br />
-<h1>Select seats</h1>
-<p><b>Order:</b> #{{ order.id }}</p>
-<p><b>Screening:</b> {{ screening }}</p>
-<p><b>Price per seat:</b> {{ screening.price }}</p>
+<main class="form-page">
+    <section class="form-card seat-card">
+        <h1 class="form-title">Select Seats</h1>
+        <p><b>Order:</b> #{{ order.id }}</p>
+        <p><b>Screening:</b> {{ screening }}</p>
+        <p><b>Price per seat:</b> {{ screening.price }}</p>
 
-<form method="post">
-    {% csrf_token %}
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Select</th>
-                <th>Seat</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in seats %}
-            <tr>
-                <td>
-                    {% if not item.occupied %}
-                    <input type="checkbox" name="seats" value="{{ item.seat.id }}">
-                    {% endif %}
-                </td>
-                <td>{{ item.seat.row }}{{ item.seat.number }}</td>
-                <td>
-                    {% if item.occupied %}
-                    Occupied
-                    {% else %}
-                    Available
-                    {% endif %}
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <br />
-    <button type="submit">Confirm seats</button>
-</form>
+        <form method="post">
+            {% csrf_token %}
+            <div class="seat-legend">
+                <span><i class="seat-dot seat-free"></i> Available</span>
+                <span><i class="seat-dot seat-occupied"></i> Occupied</span>
+                <span><i class="seat-dot seat-selected"></i> Selected</span>
+            </div>
 
-<p><a href="{% url 'order:order_list' %}">Cancel</a></p>
+            <div class="seat-grid">
+                {% for row in seat_rows %}
+                <div class="seat-row">
+                    <div class="seat-row-label">{{ row.row }}</div>
+                    <div class="seat-row-items">
+                        {% for item in row.items %}
+                            {% if item.occupied %}
+                            <span class="seat-item occupied">{{ item.seat.number }}</span>
+                            {% else %}
+                            <label class="seat-item available">
+                                <input type="checkbox" name="seats" value="{{ item.seat.id }}">
+                                <span>{{ item.seat.number }}</span>
+                            </label>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn">Confirm seats</button>
+                <a class="btn" href="{% url 'order:order_list' %}">Cancel</a>
+            </div>
+        </form>
+    </section>
+</main>
 {% endblock body %}
