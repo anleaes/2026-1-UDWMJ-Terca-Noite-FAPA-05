@@ -5,7 +5,7 @@
 {% block body %}
 <br />
 {% if user.is_authenticated %}
-<a href="{% url 'employee:add_employee' %}">Add Employee (Admin)</a>
+<a href="{% url 'employee:add_employee' %}">Add Employee </a>
 <br />
 <br />
 <b>Employee List</b></h5>
@@ -20,9 +20,9 @@
         <th>Phone</th>
         <th>Email</th>
         <th>Salary</th>
-        <th>Position</th>
-        <th></th>
-        <th></th>
+        <th>Role</th>
+        <th>Hire Date</th>
+        <th>Active</th>
     </tr>
     </thead>
     <tbody>
@@ -35,7 +35,9 @@
             <td>{{ employee.phone }}</td>
             <td>{{ employee.email }}</td>
             <td>{{ employee.salary }}</td>
-            <td>{{ employee.position }}</td>
+            <td>{{ employee.role }}</td>
+            <td>{{ employee.hire_date }}</td>
+            <td>{{ employee.active }}</td>
             <td>
                 <a href="{% url 'employee:edit_employee' employee.id %}">Edit</a>
             </td>
