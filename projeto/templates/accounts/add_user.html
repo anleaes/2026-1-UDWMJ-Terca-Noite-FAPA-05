@@ -7,37 +7,26 @@
 {% endblock title %}
 
 {% block body %}
-
-<b>New user</b>
-<form action="" method="POST">
-{% csrf_token %}
-    <label>Name</label>
-    <br />
-    {{ form.first_name|attr:"autofocus" }}
-    <br />
-    <br />
-    <label>Last Name</label>
-    <br />
-    {{ form.last_name }}
-    <br />
-    <br />              
-    <label>Username</label>
-    <br /> 
-    <br /> 
-    {{ form.username }}
-    <br /> 
-    <label>Email</label>
-    <br /> 
-    <br /> 
-    {{ form.email }}
-    <br /> 
-    <br /> 
-    <label>Password</label>
-    <br /> 
-    {{ form.password|attr:"type:password" }}
-    <br /> 
-    <br />            
-    <button type="submit" >Save</button>
-</form>
+<main class="form-page">
+    <section class="form-card">
+        <h1 class="form-title">New User</h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <label>Name</label>
+            {{ form.first_name|attr:"autofocus" }}
+            <label>Last Name</label>
+            {{ form.last_name }}
+            <label>Username</label>
+            {{ form.username }}
+            <label>Email</label>
+            {{ form.email }}
+            <label>Password</label>
+            {{ form.password|attr:"type:password" }}
+            <div class="form-actions">
+                <button type="submit" class="btn">Save</button>
+            </div>
+        </form>
+    </section>
+</main>
 
 {% endblock body %}

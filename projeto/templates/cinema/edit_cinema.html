@@ -5,40 +5,25 @@
 {% endblock title %}
 
 {% block body %}
-
-<h1>Edit Cinema</h1>
-
-<form method="POST">
-    {% csrf_token %}
-
-    <label>Name</label>
-    <br />
-    {{ cinema_form.name }}
-    <br />
-    <br />
-
-    <label>Address</label>
-    <br />
-    {{ cinema_form.address }}
-    <br />
-    <br />
-
-    <label>Phone</label>
-    <br />
-    {{ cinema_form.phone }}
-    <br />
-    <br />
-
-    <label>CNPJ</label>
-    <br />
-    {{ cinema_form.cnpj }}
-    <br />
-    <br />
-
-    <button type="submit">
-        Save Cinema
-    </button>
-</form>
+<main class="form-page">
+    <section class="form-card">
+        <h1 class="form-title">Edit Cinema</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <label>Name</label>
+            {{ cinema_form.name }}
+            <label>Address</label>
+            {{ cinema_form.address }}
+            <label>Phone</label>
+            {{ cinema_form.phone }}
+            <label>CNPJ</label>
+            {{ cinema_form.cnpj }}
+            <div class="form-actions">
+                <button type="submit" class="btn">Save Cinema</button>
+            </div>
+        </form>
+    </section>
+</main>
 
 <hr />
 

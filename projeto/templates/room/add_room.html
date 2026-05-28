@@ -5,44 +5,25 @@
 {% endblock title %}
 
 {% block body %}
-
-<h1>Register Room for {{ cinema.name }}</h1>
-
-<form method="POST">
-    {% csrf_token %}
-
-    <label>Rows</label>
-    <br />
-    {{ form.rows }}
-    <br />
-    <br />
-    <label>Columns</label>
-    <br />  
-    {{ form.columns }}
-    <br />
-    <br />  
-
-    <label>Projection Type</label>
-    <br />
-    {{ form.projection_type }}
-    <br />
-    <br />
-
-    <label>Accessibility</label>
-    <br />
-    {{ form.accessibility }}
-    <br />
-    <br />
-
-    <button type="submit">
-        Save
-    </button>
-</form>
-
-<br />
-
-<a href="{% url 'cinema:edit_cinema' cinema.id %}">
-    Back to Cinema
-</a>
+<main class="form-page">
+    <section class="form-card">
+        <h1 class="form-title">Register Room for {{ cinema.name }}</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <label>Rows</label>
+            {{ form.rows }}
+            <label>Columns</label>
+            {{ form.columns }}
+            <label>Projection Type</label>
+            {{ form.projection_type }}
+            <label>Accessibility</label>
+            {{ form.accessibility }}
+            <div class="form-actions">
+                <button type="submit" class="btn">Save</button>
+                <a class="btn" href="{% url 'cinema:edit_cinema' cinema.id %}">Back to Cinema</a>
+            </div>
+        </form>
+    </section>
+</main>
 
 {% endblock body %}

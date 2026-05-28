@@ -26,7 +26,7 @@ def _get_user_order(order_id, user):
 
 
 @login_required(login_url='/accounts/user_login/')
-def my_tickets(request):
+def ticket_list(request):
     tickets = (
         Ticket.objects.filter(tickets_for_user(request.user))
         .select_related('screening', 'seat', 'order')
@@ -84,19 +84,30 @@ def select_seats(request, order_id):
         messages.success(request, 'Seats reserved. Proceed to payment.')
         return redirect('payment:checkout', order_id=order.pk)
 
-    seats = [
-        {
-            'seat': seat,
-            'occupied': seat.id in occupied_ids,
-        }
-        for seat in all_seats
-    ]
+    seat_rows = []
+    current_row = None
+    row_items = []
+    for seat in all_seats:
+        if current_row != seat.row:
+            if current_row is not None:
+                seat_rows.append({'row': current_row, 'items': row_items})
+            current_row = seat.row
+            row_items = []
+        row_items.append(
+            {
+                'seat': seat,
+                'occupied': seat.id in occupied_ids,
+            }
+        )
+    if current_row is not None:
+        seat_rows.append({'row': current_row, 'items': row_items})
+
     return render(
         request,
         'ticket/select_seats.html',
         {
             'order': order,
             'screening': screening,
-            'seats': seats,
+            'seat_rows': seat_rows,
         },
     )

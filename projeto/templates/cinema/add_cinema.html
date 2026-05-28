@@ -3,32 +3,23 @@
     Register Cinema - {{ block.super }}
 {% endblock title %}
 {% block body %}
-<br />
-<b>Register Cinema</b>
-<br />
-<br />
-<form action="" method="POST">
-{% csrf_token %}
-    <label>Name</label>
-    <br />
-    {{ form.name }}
-    <br />
-    <br />
-    <label>Address</label>
-    <br />
-    {{ form.address }}
-    <br />
-    <br />
-    <label>Phone</label>
-    <br />
-    {{ form.phone }}
-    <br />
-    <br />
-    <label>CNPJ</label>
-    <br />
-    {{ form.cnpj }}
-    <br />
-    <br />
-    <button type="submit">Save</button>
-</form>
+<main class="form-page">
+    <section class="form-card">
+        <h1 class="form-title">Register Cinema</h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <label>Name</label>
+            {{ form.name }}
+            <label>Address</label>
+            {{ form.address }}
+            <label>Phone</label>
+            {{ form.phone }}
+            <label>CNPJ</label>
+            {{ form.cnpj }}
+            <div class="form-actions">
+                <button type="submit" class="btn">Save</button>
+            </div>
+        </form>
+    </section>
+</main>
 {% endblock body %}

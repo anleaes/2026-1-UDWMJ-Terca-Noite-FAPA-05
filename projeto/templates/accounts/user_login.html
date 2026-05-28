@@ -9,23 +9,24 @@
   <title>Cinema App Login</title>
   <link rel="stylesheet" href="{% static 'css/arquivo_com_estilos.css' %}">
 </head>
-<body>
-    <form action="" method="POST">
-    {% csrf_token %}
-    <b>Identify yourself</b>
-    <br />
-    <label>Username</label>
-    <br />
-    <input type="text" id="username" name="username" placeholder="Username" required autofocus>
-    <br />
-    <label>Password</label>
-    <br />
-    <input type="password" id="password" name="password" placeholder="Enter your password" required>
-    <br />
-    <button type="submit">Enter</button>
-    <br />
-    <a href="{% url 'accounts:add_user' %}">Create an account</a>
-  </form>
+<body class="auth-page">
+  <main class="auth-wrapper">
+    <form action="" method="POST" class="auth-card">
+      {% csrf_token %}
+      <h1>Cinema App</h1>
+
+      <label for="username">Login</label>
+      <input type="text" id="username" name="username" placeholder="Username" required autofocus>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Password" required>
+
+      <div class="auth-actions">
+        <button type="submit" class="btn auth-btn">Login</button>
+        <a class="btn auth-btn secondary" href="{% url 'accounts:add_user' %}">Create an account</a>
+      </div>
+    </form>
+  </main>
   <script src="{% static 'js/arquivo_com_javascript.js' %}"></script>
 </body>
 </html>
