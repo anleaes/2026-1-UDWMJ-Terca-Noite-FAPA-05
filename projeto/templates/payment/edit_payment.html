@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}
+    Edit Payment - {{ block.super }}
+{% endblock title %}
+{% block body %}
+{% if user.is_authenticated %}
+<main class="form-page">
+    <section class="form-card">
+        <h1 class="form-title">Edit Payment</h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <label>Payment Method</label>
+            {{ form.payment_method }}
+            <label>Status</label>
+            {{ form.transaction_status }}
+            <label>Amount</label>
+            {{ form.charged_amount }}
+            <div class="form-actions">
+                <button type="submit" class="btn">Save</button>
+            </div>
+        </form>
+    </section>
+</main>
+{% endblock body %}
