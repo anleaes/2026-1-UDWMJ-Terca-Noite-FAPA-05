@@ -3,33 +3,41 @@
 {% load widget_tweaks %}
 
 {% block title %}
-    New User - {{ block.super}}
+    My Profile - {{ block.super }}
 {% endblock title %}
 
 {% block body %}
-
-<br />
-<p>Change User</p>
-<br />
-<br />
-<form action="" method="POST">
-{% csrf_token %}
-    <label>First Name</label>
-    <br />
-    {{ form.first_name|attr:"autofocus" }}
-    <br />
-    <br />
-    <label>Last Name</label>
-    <br />
-    {{ form.last_name }}
-    <br />
-    <br />
-    <label>Email</label>
-    <br />
-    {{ form.email }}
-    <br />
-    <br />
-    <button type="submit">Save</button>
-</form>
-
+<main class="form-page">
+    <section class="form-card form-card--account">
+        <h1 class="form-title">My Profile</h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+            <ul class="errorlist">
+                {% for error in form.non_field_errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <label for="{{ form.first_name.id_for_label }}">First Name</label>
+            {{ form.first_name|attr:"autofocus" }}
+            {% if form.first_name.errors %}
+            <ul class="errorlist">{% for error in form.first_name.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+            {% endif %}
+            <label for="{{ form.last_name.id_for_label }}">Last Name</label>
+            {{ form.last_name }}
+            {% if form.last_name.errors %}
+            <ul class="errorlist">{% for error in form.last_name.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+            {% endif %}
+            <label for="{{ form.email.id_for_label }}">Email</label>
+            {{ form.email }}
+            {% if form.email.errors %}
+            <ul class="errorlist">{% for error in form.email.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+            {% endif %}
+            <div class="form-actions">
+                <button type="submit" class="btn">Save</button>
+            </div>
+        </form>
+    </section>
+</main>
 {% endblock body %}

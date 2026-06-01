@@ -206,6 +206,28 @@ tbody tr:last-child td {
     font-size: 22px;
 }
 
+.form-card--account {
+    width: min(480px, 100%);
+}
+
+.form-subtitle {
+    margin: -6px 0 16px;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.form-card .errorlist {
+    margin: 4px 0 8px;
+    padding-left: 18px;
+    color: #b91c1c;
+    font-size: 13px;
+}
+
+.form-card button.btn {
+    border: 0;
+    cursor: pointer;
+}
+
 .form-card label {
     display: block;
     margin: 10px 0 6px;
@@ -243,11 +265,6 @@ tbody tr:last-child td {
     margin-top: 4px;
     color: #6b7280;
     font-size: 12px;
-}
-
-.form-card .errorlist {
-    margin: 6px 0;
-    color: #b91c1c;
 }
 
 .form-actions {
