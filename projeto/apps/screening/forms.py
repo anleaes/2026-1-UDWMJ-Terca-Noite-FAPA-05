@@ -12,7 +12,3 @@ class ScreeningForm(forms.ModelForm):
                 format='%Y-%m-%dT%H:%M',
             ),
         }
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['start_time'].input_formats = ['%Y-%m-%dT%H:%M', '%d/%m/%Y %H:%M']
