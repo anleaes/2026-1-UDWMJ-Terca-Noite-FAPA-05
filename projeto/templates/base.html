@@ -6,36 +6,67 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/arquivo_com_estilos.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/arquivo_com_estilos.css' %}?v=6">
     <title>{% block title %}Cinema App{% endblock title %}</title>
 </head>
 <body>
 
-    <nav class="site-nav">
-        <div class="nav-group">
-            <a class="btn" href="{% url 'core:home' %}">Home</a>
-            <a class="btn" href="{% url 'cinema:cinema_list' %}">Cinemas</a>
-            <a class="btn" href="{% url 'movie:movie_list' %}">Movies</a>
-            <a class="btn" href="{% url 'genre:genre_list' %}">Genres</a>
-            <a class="btn" href="{% url 'screening:screening_list' %}">Screenings</a>
-        </div>
-        {% if user.is_authenticated %}
-        <div class="nav-group">
-            <a class="btn" href="{% url 'order:order_list' %}">Orders</a>
-            <a class="btn" href="{% url 'ticket:ticket_list' %}">Tickets</a>
-            <a class="btn" href="{% url 'payment:payment_list' %}">Payments</a>
-        </div>
-        <div class="nav-group">
-            <a class="btn" href="{% url 'client:client_list' %}">Clients</a>
-            <a class="btn" href="{% url 'employee:employee_list' %}">Employees</a>
-        </div>
-        <div class="nav-group nav-group-right">
-            <a class="btn" href="{% url 'accounts:user_change_information' user.username %}">My Profile</a>
-            <a class="btn" href="{% url 'accounts:user_change_password' %}">Change Password</a>
-            <a class="btn" href="{% url 'accounts:user_logout' %}">Logout</a>
-        </div>
-        {% endif %}
-    </nav>
+    <header class="site-header">
+        <a class="site-title" href="{% url 'core:home' %}">Cinema App</a>
+        <nav class="site-nav" aria-label="Main navigation">
+            <div class="nav-groups">
+                <div class="nav-section">
+                    <span class="nav-section-title">Browse</span>
+                    <div class="nav-section-links">
+                        <a class="nav-btn" href="{% url 'core:home' %}">Home</a>
+                        <a class="nav-btn" href="{% url 'screening:screening_list' %}">Screenings</a>
+                        <a class="nav-btn" href="{% url 'cinema:cinema_list' %}">Cinemas</a>
+                        <a class="nav-btn" href="{% url 'movie:movie_list' %}">Movies</a>
+                        <a class="nav-btn" href="{% url 'genre:genre_list' %}">Genres</a>
+                    </div>
+                </div>
+
+                {% if user.is_authenticated %}
+                <div class="nav-section">
+                    <span class="nav-section-title">Sales</span>
+                    <div class="nav-section-links">
+                        <a class="nav-btn" href="{% url 'order:order_list' %}">Orders</a>
+                        <a class="nav-btn" href="{% url 'ticket:ticket_list' %}">Tickets</a>
+                        <a class="nav-btn" href="{% url 'payment:payment_list' %}">Payments</a>
+                    </div>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">Management</span>
+                    <div class="nav-section-links">
+                        <a class="nav-btn" href="{% url 'client:client_list' %}">Clients</a>
+                        <a class="nav-btn" href="{% url 'employee:employee_list' %}">Employees</a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="nav-section nav-actions">
+                {% if user.is_authenticated %}
+                <span class="nav-section-title">Account</span>
+                <div class="nav-section-links">
+                    <a class="nav-btn" href="{% url 'accounts:user_change_information' user.username %}">My Profile</a>
+                    <a class="nav-btn" href="{% url 'accounts:user_change_password' %}">Change Password</a>
+                    <a class="nav-btn nav-btn--danger" href="{% url 'accounts:user_logout' %}">Logout</a>
+                </div>
+                {% else %}
+                <span class="nav-section-title">Access</span>
+                <div class="nav-section-links">
+                    <a class="nav-btn" href="{% url 'accounts:user_login' %}">Login</a>
+                    <a class="nav-btn nav-btn--register" href="{% url 'accounts:add_user' %}">Register</a>
+                </div>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
 
     {% if messages %}
     <ul class="messages">
