@@ -1,52 +1,31 @@
 {% extends 'base.html' %}
-
 {% block title %}
     Ticket List - {{ block.super }}
 {% endblock title %}
-
 {% block body %}
-
 <br />
-<br />
-
-<h5><b>Ticket List</b></h5>
-
+<b>Ticket List</b>
 <table border="1">
-
     <thead>
-        <tr>
-            <th>ID</th>
-            <th>Screening</th>
-            <th>Seat</th>
-            <th>Order</th>
-            <th>Issued At</th>
-        </tr>
+    <tr>
+        <th>ID</th>
+        <th>Screening</th>
+        <th>Seat</th>
+        <th>Order</th>
+        <th>Issued at</th>
+    </tr>
     </thead>
-
     <tbody>
-
-        {% for ticket in tickets %}
-
-            <tr>
-                <td>{{ ticket.id }}</td>
-                <td>{{ ticket.screening }}</td>
-                <td>{{ ticket.seat }}</td>
-                <td>{{ ticket.order }}</td>
-                <td>{{ ticket.issued_at }}</td>
-            </tr>
-
-        {% empty %}
-
-            <tr>
-                <td colspan="5">
-                    Nenhum ticket encontrado.
-                </td>
-            </tr>
-
-        {% endfor %}
-
+    {% for ticket in tickets %}
+        <tr>
+            <td>{{ ticket.id }}</td>
+            <td>{{ ticket.screening }}</td>
+            <td>{{ ticket.seat }}</td>
+            <td>
+                <a href="{% url 'order:edit_order' ticket.order.id %}">{{ ticket.order.id }}</a>
+            </td>
+        </tr>
+    {% endfor %}
     </tbody>
-
 </table>
-
 {% endblock body %}

@@ -1,27 +1,20 @@
 {% extends 'base.html' %}
 {% block title %}
-    Edit Payment - {{ block.super }}
+    Register Payment - {{ block.super }}
 {% endblock title %}
 {% block body %}
-{% if user.is_authenticated %}
 <main class="form-page">
     <section class="form-card">
-        <h1 class="form-title">Edit Payment</h1>
+        <h1 class="form-title">Register Payment for Order #{{ order.id }}</h1>
         <form action="" method="POST">
             {% csrf_token %}
             <label>Payment Method</label>
             {{ form.payment_method }}
-            <label>Status</label>
-            {{ form.transaction_status }}
-            <label>Amount</label>
-            {{ form.charged_amount }}
             <div class="form-actions">
                 <button type="submit" class="btn">Save</button>
+                <a class="btn" href="{% url 'order:edit_order' order.id %}">Back to Order</a>
             </div>
         </form>
     </section>
 </main>
-{% else %}
-    <p>Please <a href="{% url 'accounts:user_login' %}">login</a> to edit payments.</p>
-{% endif %}
 {% endblock body %}

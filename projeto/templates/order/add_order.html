@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% block title %}
+    Register Order - {{ block.super }}
+{% endblock title %}
+{% block body %}
+<br />
+<a href="{% url 'order:order_list' %}">Back to Order List</a>
+<br />
+<br />
+
+{% if order %}
+<h1>Register Order #{{ order.id }}</h1>
+
+<hr />
+
+<h2>Ticket List</h2>
+
+<br />
+
+<a href="{% url 'ticket:add_ticket' order.id %}">Register Ticket</a>
+
+<br />
+<br />
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Screening</th>
+        <th>Seat</th>
+        <th>Issued at</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for ticket in tickets %}
+        <tr>
+            <td>{{ ticket.id }}</td>
+            <td>{{ ticket.screening }}</td>
+            <td>{{ ticket.seat }}</td>
+            <td>{{ ticket.issued_at|default:"—" }}</td>
+            <td>
+                <a href="{% url 'ticket:delete_ticket' order.id ticket.id %}">Delete</a>
+            </td>
+        </tr>
+    {% empty %}
+        <tr>
+            <td colspan="5">No tickets registered.</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<hr />
+
+<h2>Payment</h2>
+
+<br />
+
+{% if not order.payment %}
+<a href="{% url 'payment:add_payment' order.id %}">Register Payment</a>
+<br />
+<br />
+{% endif %}
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Method</th>
+        <th>Status</th>
+        <th>Amount</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% if order.payment %}
+        <tr>
+            <td>{{ order.payment.id }}</td>
+            <td>{{ order.payment.payment_method }}</td>
+            <td>{{ order.payment.transaction_status }}</td>
+            <td>{{ order.payment.charged_amount }}</td>
+            <td>
+                <a href="{% url 'payment:edit_payment' order.payment.id %}">Edit</a>
+            </td>
+            <td>
+                <a href="{% url 'payment:delete_payment' order.id %}">Delete</a>
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="6">No payment registered.</td>
+        </tr>
+    {% endif %}
+    </tbody>
+</table>
+
+<hr />
+
+<main class="form-page">
+    <section class="form-card">
+        <h2 class="form-title">Client</h2>
+        <p>{{ order.client|default:"—" }}</p>
+    </section>
+</main>
+{% else %}
+<main class="form-page">
+    <section class="form-card">
+        <h1 class="form-title">Register Order</h1>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <label>Client</label>
+            {{ form.client }}
+            <div class="form-actions">
+                <button type="submit" class="btn">Save</button>
+            </div>
+        </form>
+    </section>
+</main>
+{% endif %}
+{% endblock body %}

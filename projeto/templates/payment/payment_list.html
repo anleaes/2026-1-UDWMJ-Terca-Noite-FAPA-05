@@ -30,10 +30,13 @@
                 <a href="{% url 'payment:edit_payment' payment.id %}">Edit</a>
             </td>
             <td>
-                <a href="{% url 'payment:delete_payment' payment.id %}">Delete</a>
+                <a href="{% url 'payment:delete_payment' payment.order.id %}">Delete</a>
             </td>
         </tr>
     {% endfor %}
     </tbody>
 </table>
+{% else %}
+    <p>Please <a href="{% url 'accounts:user_login' %}">login</a> to view payments.</p>
+{% endif %}
 {% endblock body %}
