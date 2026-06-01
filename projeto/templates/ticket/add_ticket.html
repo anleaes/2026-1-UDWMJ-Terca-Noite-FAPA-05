@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}
+    Register Ticket - {{ block.super }}
+{% endblock title %}
+{% block body %}
+<main class="form-page">
+    <section class="form-card">
+        <h1 class="form-title">Register Ticket for Order #{{ order.id }}</h1>
+
+        {% if not screening %}
+        {% if screenings %}
+        <form action="{% url 'ticket:add_ticket_seat' order.id %}" method="POST">
+            {% csrf_token %}
+            <label>Screening</label>
+            <select name="screening">
+                {% for s in screenings %}
+                <option value="{{ s.id }}">{{ s }}</option>
+                {% endfor %}
+            </select>
+            <div class="form-actions">
+                <button type="submit" class="btn">Select</button>
+                <a class="btn" href="{% url 'order:edit_order' order.id %}">Back to Order</a>
+            </div>
+        </form>
+        {% else %}
+        <p>No screenings available.</p>
+        <div class="form-actions">
+            <a class="btn" href="{% url 'order:edit_order' order.id %}">Back to Order</a>
+        </div>
+        {% endif %}
+        {% else %}
+        <p><b>Screening:</b> {{ screening }}</p>
+        {% if available_seats %}
+        <form action="{% url 'ticket:add_ticket_seat' order.id %}" method="POST">
+            {% csrf_token %}
+            <label>Screening</label>
+            <select name="screening">
+                <option value="{{ screening.id }}">{{ screening }}</option>
+            </select>
+            <label>Seat</label>
+            <select name="seat">
+                {% for seat in available_seats %}
+                <option value="{{ seat.id }}">{{ seat }}</option>
+                {% endfor %}
+            </select>
+            <div class="form-actions">
+                <button type="submit" class="btn">Save</button>
+                <a class="btn" href="{% url 'ticket:add_ticket' order.id %}">Back to Screening</a>
+                <a class="btn" href="{% url 'order:edit_order' order.id %}">Back to Order</a>
+            </div>
+        </form>
+        {% else %}
+        <p>No seats available for this screening.</p>
+        <div class="form-actions">
+            <a class="btn" href="{% url 'ticket:add_ticket' order.id %}">Back to Screening</a>
+            <a class="btn" href="{% url 'order:edit_order' order.id %}">Back to Order</a>
+        </div>
+        {% endif %}
+        {% endif %}
+    </section>
+</main>
+{% endblock body %}

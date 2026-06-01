@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 {% block title %}
-    My Orders - {{ block.super }}
+    Order List - {{ block.super }}
 {% endblock title %}
 {% block body %}
 <br />
-<p><a href="{% url 'screening:screening_list' %}">Buy tickets</a></p>
+<a href="{% url 'order:add_order' %}">Register Order</a>
 <br />
-<b>My Orders</b>
+<br />
+<b>Order List</b>
 <table border="1">
     <thead>
     <tr>
@@ -14,8 +15,10 @@
         <th>Date</th>
         <th>Status</th>
         <th>Total</th>
-        <th>Screening</th>
-        <th>Actions</th>
+        <th>Client</th>
+        <th>Payment</th>
+        <th></th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -23,24 +26,24 @@
         <tr>
             <td>{{ order.id }}</td>
             <td>{{ order.date_created }}</td>
-            <td>{{ order.get_status_display }}</td>
+            <td>{{ order.status }}</td>
             <td>{{ order.total_price }}</td>
-            <td>{{ order.screening }}</td>
+            <td>{{ order.client }}</td>
             <td>
-                <a href="{% url 'order:order_detail' order.id %}">View</a>
-                {% if order.status == 'pending_seats' %}
-                | <a href="{% url 'ticket:select_seats' order.id %}">Select seats</a>
-                {% elif order.status == 'pending_payment' %}
-                | <a href="{% url 'payment:checkout' order.id %}">Pay</a>
-                {% endif %}
-                {% if order.status != 'completed' and order.status != 'cancelled' %}
-                | <a href="{% url 'order:cancel_order' order.id %}">Cancel</a>
+                {% if order.payment %}
+                    {{ order.payment.transaction_status }}
+                {% else %}
+                    —
                 {% endif %}
             </td>
-        </tr>
-    {% empty %}
-        <tr>
-            <td colspan="6">No orders yet.</td>
+            <td>
+                {% if order.payment and order.payment.transaction_status == 'pending' %}
+                <a href="{% url 'payment:edit_payment' order.payment.id %}">Approve</a>
+                {% endif %}
+            </td>
+            <td>
+                <a href="{% url 'order:delete_order' order.id %}">Delete</a>
+            </td>
         </tr>
     {% endfor %}
     </tbody>
