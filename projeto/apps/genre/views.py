@@ -22,7 +22,6 @@ def add_genre(request):
     return render(request, template_name, context)
 
 
-@login_required(login_url='/accounts/user_login/')
 def genre_list(request):
     template_name = 'genre/genre_list.html'
     genres = Genre.objects.all()
