@@ -1,7 +1,6 @@
 from django import forms
 
 from .models import Ticket
-from seat.models import Seat
 
 
 class TicketForm(forms.ModelForm):
