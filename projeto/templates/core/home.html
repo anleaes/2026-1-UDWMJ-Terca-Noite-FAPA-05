@@ -4,16 +4,10 @@
 
 {% block body %}
 <main class="home">
-    <h1>Cinema App</h1>
     {% if user.is_authenticated %}
     <p>Welcome, {{ user.username }}.</p>
-
     {% else %}
     <p>Log in to manage everything.</p>
-    <div class="home-actions">
-        <a class="btn" href="{% url 'accounts:user_login' %}">Login</a>
-        <a class="btn" href="{% url 'accounts:add_user' %}">Register</a>
-    </div>
     {% endif %}
 </main>
 {% endblock body %}

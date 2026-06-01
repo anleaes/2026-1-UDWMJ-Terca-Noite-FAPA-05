@@ -32,9 +32,7 @@
 <br />
 
 {% if user.is_authenticated %}
-<a href="{% url 'room:add_room' cinema.id %}">
-    Register Room
-</a>
+<a class="btn-register" href="{% url 'room:add_room' cinema.id %}">Register Room</a>
 
 <br />
 <br />
@@ -74,15 +72,11 @@
 
             {% if user.is_authenticated %}
             <td>
-                <a href="{% url 'room:edit_room' cinema.id room.id %}">
-                    Edit
-                </a>
+                <a class="btn-edit" href="{% url 'room:edit_room' cinema.id room.id %}">Edit</a>
             </td>
 
             <td>
-                <a href="{% url 'room:delete_room' cinema.id room.id %}">
-                    Delete
-                </a>
+                <a class="btn-delete" href="{% url 'room:delete_room' cinema.id room.id %}">Delete</a>
             </td>
             {% endif %}
         </tr>

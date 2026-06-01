@@ -5,7 +5,7 @@
 {% block body %}
 <br />
 {% if user.is_authenticated %}
-    <a href="{% url 'genre:add_genre' %}">Register Genre</a>
+    <a class="btn-register" href="{% url 'genre:add_genre' %}">Register Genre</a>
 <br />
 <br />
 {% endif %}
@@ -30,10 +30,10 @@
             <td>{{ genre.description }}</td>
             {% if user.is_authenticated %}
             <td>
-                <a href="{% url 'genre:edit_genre' genre.id %}">Edit</a>
+                <a class="btn-edit" href="{% url 'genre:edit_genre' genre.id %}">Edit</a>
             </td>
             <td>
-                <a href="{% url 'genre:delete_genre' genre.id %}">Delete</a>
+                <a class="btn-delete" href="{% url 'genre:delete_genre' genre.id %}">Delete</a>
             </td>
             {% endif %}
         </tr>
