@@ -32,3 +32,11 @@ class Order(models.Model):
 
     def __str__(self):
         return f'Order {self.id}'
+
+    def can_modify_tickets(self):
+        if self.status in (self.STATUS_PAID, self.STATUS_CANCELLED):
+            return False
+        payment = getattr(self, 'payment', None)
+        if payment is not None and payment.transaction_status == 'approved':
+            return False
+        return True

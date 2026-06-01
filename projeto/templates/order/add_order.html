@@ -17,7 +17,9 @@
 
 <br />
 
+{% if order.can_modify_tickets %}
 <a href="{% url 'ticket:add_ticket' order.id %}">Register Ticket</a>
+{% endif %}
 
 <br />
 <br />
@@ -29,7 +31,7 @@
         <th>Screening</th>
         <th>Seat</th>
         <th>Issued at</th>
-        <th></th>
+        {% if order.can_modify_tickets %}<th></th>{% endif %}
     </tr>
     </thead>
     <tbody>
@@ -39,13 +41,15 @@
             <td>{{ ticket.screening }}</td>
             <td>{{ ticket.seat }}</td>
             <td>{{ ticket.issued_at|default:"—" }}</td>
+            {% if order.can_modify_tickets %}
             <td>
                 <a href="{% url 'ticket:delete_ticket' order.id ticket.id %}">Delete</a>
             </td>
+            {% endif %}
         </tr>
     {% empty %}
         <tr>
-            <td colspan="5">No tickets registered.</td>
+            <td colspan="{% if order.can_modify_tickets %}5{% else %}4{% endif %}">No tickets registered.</td>
         </tr>
     {% endfor %}
     </tbody>
