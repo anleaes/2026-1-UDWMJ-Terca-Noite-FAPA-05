@@ -18,7 +18,7 @@
 <br />
 
 {% if order.can_modify_tickets %}
-<a href="{% url 'ticket:add_ticket' order.id %}">Register Ticket</a>
+<a class="btn-register" href="{% url 'ticket:add_ticket' order.id %}">Register Ticket</a>
 {% endif %}
 
 <br />
@@ -43,7 +43,7 @@
             <td>{{ ticket.issued_at|default:"—" }}</td>
             {% if order.can_modify_tickets %}
             <td>
-                <a href="{% url 'ticket:delete_ticket' order.id ticket.id %}">Delete</a>
+                <a class="btn-delete" href="{% url 'ticket:delete_ticket' order.id ticket.id %}">Delete</a>
             </td>
             {% endif %}
         </tr>
@@ -62,7 +62,7 @@
 <br />
 
 {% if not order.payment %}
-<a href="{% url 'payment:add_payment' order.id %}">Register Payment</a>
+<a class="btn-register" href="{% url 'payment:add_payment' order.id %}">Register Payment</a>
 <br />
 <br />
 {% endif %}
@@ -86,10 +86,10 @@
             <td>{{ order.payment.transaction_status }}</td>
             <td>{{ order.payment.charged_amount }}</td>
             <td>
-                <a href="{% url 'payment:edit_payment' order.payment.id %}">Edit</a>
+                <a class="btn-edit" href="{% url 'payment:edit_payment' order.payment.id %}">Edit</a>
             </td>
             <td>
-                <a href="{% url 'payment:delete_payment' order.id %}">Delete</a>
+                <a class="btn-delete" href="{% url 'payment:delete_payment' order.id %}">Delete</a>
             </td>
         </tr>
     {% else %}

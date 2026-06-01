@@ -27,10 +27,10 @@
             <td>{{ payment.transaction_status }}</td>
             <td>{{ payment.charged_amount }}</td>
             <td>
-                <a href="{% url 'payment:edit_payment' payment.id %}">Edit</a>
+                <a class="btn-edit" href="{% url 'payment:edit_payment' payment.id %}">Edit</a>
             </td>
             <td>
-                <a href="{% url 'payment:delete_payment' payment.order.id %}">Delete</a>
+                <a class="btn-delete" href="{% url 'payment:delete_payment' payment.order.id %}">Delete</a>
             </td>
         </tr>
     {% endfor %}

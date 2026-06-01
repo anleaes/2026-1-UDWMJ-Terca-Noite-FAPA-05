@@ -4,7 +4,7 @@
 {% endblock title %}
 {% block body %}
 <br />
-<a href="{% url 'order:add_order' %}">Register Order</a>
+<a class="btn-register" href="{% url 'order:add_order' %}">Register Order</a>
 <br />
 <br />
 <b>Order List</b>
@@ -42,7 +42,7 @@
                 {% endif %}
             </td>
             <td>
-                <a href="{% url 'order:delete_order' order.id %}">Delete</a>
+                <a class="btn-delete" href="{% url 'order:delete_order' order.id %}">Delete</a>
             </td>
         </tr>
     {% endfor %}

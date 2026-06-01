@@ -5,7 +5,7 @@
 {% block body %}
 <br />
 {% if user.is_authenticated %}
-<a href="{% url 'employee:add_employee' %}">Add Employee </a>
+<a class="btn-register" href="{% url 'employee:add_employee' %}">Add Employee</a>
 <br />
 <br />
 <b>Employee List</b></h5>
@@ -39,10 +39,10 @@
             <td>{{ employee.hire_date }}</td>
             <td>{{ employee.active }}</td>
             <td>
-                <a href="{% url 'employee:edit_employee' employee.id %}">Edit</a>
+                <a class="btn-edit" href="{% url 'employee:edit_employee' employee.id %}">Edit</a>
             </td>
             <td>
-                <a href="{% url 'employee:delete_employee' employee.id %}">Delete</a>
+                <a class="btn-delete" href="{% url 'employee:delete_employee' employee.id %}">Delete</a>
             </td>
         </tr>
     {% endfor %}

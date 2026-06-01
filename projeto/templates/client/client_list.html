@@ -4,7 +4,7 @@
 {% endblock title %}
 {% block body %}
 <br />
-<a href="{% url 'client:add_client' %}">Register Client</a>
+<a class="btn-register" href="{% url 'client:add_client' %}">Register Client</a>
 <br />
 <br />
 <b>Client List</b></h5>
@@ -38,10 +38,10 @@
             <td>{{ client.cpf }}</td>
             <td>{{ client.date_of_birth }}</td>
             <td>
-                <a href="{% url 'client:edit_client' client.id %}">Edit</a>
+                <a class="btn-edit" href="{% url 'client:edit_client' client.id %}">Edit</a>
             </td>
             <td>
-                <a href="{% url 'client:delete_client' client.id %}">Delete</a>
+                <a class="btn-delete" href="{% url 'client:delete_client' client.id %}">Delete</a>
             </td>
         </tr>
     {% endfor %}
