@@ -5,15 +5,6 @@ from .models import Client
 from django.contrib.auth.decorators import login_required
 
 
-def _sync_user_from_client(client):
-    if client.user_id:
-        user = client.user
-        user.first_name = client.first_name
-        user.last_name = client.last_name
-        user.email = client.email
-        user.save()
-
-
 @login_required(login_url='/accounts/user_login/')
 def client_list(request):
     template_name = 'client/client_list.html'
@@ -52,8 +43,7 @@ def edit_client(request, pk):
         form = ClientForm(request.POST, instance=client)
 
         if form.is_valid():
-            client = form.save()
-            _sync_user_from_client(client)
+            form.save()
             return redirect('client:client_list')
     else:
         form = ClientForm(instance=client)
@@ -66,8 +56,5 @@ def edit_client(request, pk):
 @login_required(login_url='/accounts/user_login/')
 def delete_client(request, pk):
     client = get_object_or_404(Client, pk=pk)
-    user = client.user
     client.delete()
-    if user:
-        user.delete()
     return redirect('client:client_list')
