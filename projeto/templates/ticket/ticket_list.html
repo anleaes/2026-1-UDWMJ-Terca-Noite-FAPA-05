@@ -24,6 +24,7 @@
             <td>
                 <a href="{% url 'order:edit_order' ticket.order.id %}">{{ ticket.order.id }}</a>
             </td>
+            <td> {{ ticket.issued_at|default:"—" }}</td>
         </tr>
     {% endfor %}
     </tbody>
